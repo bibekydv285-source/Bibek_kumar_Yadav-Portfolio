@@ -1,0 +1,194 @@
+/* ==========================================================
+   PREMIUM NAVBAR HEIGHT ENHANCEMENT
+   ========================================================== */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 15, 28, 0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+}
+
+/* Increased Navbar Height */
+/* Reduced Navbar Height */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 10px 45px; /* Reduced height */
+    min-height: 50px;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: var(--white);
+}
+
+    .logo .dot {
+        color: var(--cyan);
+    }
+
+
+/* Navigation Links */
+.tabs ul {
+    display: flex;
+    gap: 42px;
+}
+
+.tabs a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--muted);
+    position: relative;
+    padding-bottom: 10px;
+    transition: all .3s ease;
+}
+
+
+    /* Hover Effect */
+    .tabs a:hover,
+    .tabs a.active {
+        color: var(--white);
+        transform: translateY(-2px);
+    }
+
+
+        /* Active Line */
+        .tabs a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient( 90deg, var(--cyan), var(--pink) );
+            border-radius: 10px;
+        }
+
+
+/* Button */
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.topbar-cta {
+    background: linear-gradient( 135deg, var(--pink), #ff5a9a );
+    color: white;
+    font-weight: 700;
+    padding: 13px 30px;
+    border-radius: 12px;
+    font-size: .95rem;
+    box-shadow: 0 10px 30px -10px rgba(255,45,120,.7);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+
+    .topbar-cta:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px -8px rgba(255,45,120,.8);
+    }
+
+
+/* Mobile Button */
+.navtoggle {
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.05);
+    color: var(--white);
+    font-size: 1.3rem;
+}
+
+
+/* ==========================================================
+   RESPONSIVE / MOBILE NAV
+   ========================================================== */
+@media(max-width:980px) {
+
+    .topbar {
+        padding: 20px 25px;
+        min-height: 75px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .tabs {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10,15,28,.95);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid var(--line);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s ease;
+    }
+
+
+        .tabs.open {
+            max-height: 450px;
+        }
+
+
+        .tabs ul {
+            flex-direction: column;
+            gap: 2px;               /* even spacing between rows */
+            padding: 10px 25px 20px;
+        }
+
+
+        .tabs a {
+            display: block;         /* full-width tappable row */
+            width: 100%;
+            padding: 14px 0;        /* consistent, roomy touch target */
+            padding-bottom: 14px;   /* override desktop's padding-bottom: 10px */
+        }
+
+        .tabs a + a {
+            border-top: 1px solid var(--line); /* subtle divider between items */
+        }
+
+        /* Kill the lift effect on mobile — it was pushing the
+           active underline up into the text, causing the strikethrough look */
+        .tabs a:hover,
+        .tabs a.active {
+            transform: none;
+        }
+
+        /* Static small underline below the text instead of an
+           absolutely-positioned full-width bar */
+        .tabs a.active::after {
+            content: "";
+            position: static;
+            display: block;
+            width: 32px;
+            height: 3px;
+            margin-top: 6px;
+            background: linear-gradient( 90deg, var(--cyan), var(--pink) );
+            border-radius: 10px;
+        }
+
+
+    .topbar-cta {
+        display: none;
+    }
+
+
+    .navtoggle {
+        display: block;
+    }
+}

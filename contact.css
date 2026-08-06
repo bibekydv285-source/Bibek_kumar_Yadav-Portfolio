@@ -1,0 +1,690 @@
+/* ================================================================
+   CONTACT PAGE — PREMIUM GLASSMORPHISM
+   For the ASP.NET MVC Contact view supplied with this stylesheet.
+   ================================================================ */
+
+:root {
+    --contact-bg: #071224;
+    --contact-bg-deep: #0d1d39;
+    --contact-surface: rgba(255, 255, 255, 0.075);
+    --contact-surface-hover: rgba(255, 255, 255, 0.12);
+    --contact-border: rgba(255, 255, 255, 0.14);
+    --contact-text: #f7faff;
+    --contact-muted: #bfcae1;
+    --contact-primary: #54a2ff;
+    --contact-secondary: #9468ff;
+    --contact-cyan: #4ee2e8;
+    --contact-radius: 22px;
+    --contact-shadow: 0 20px 55px rgba(1, 7, 20, 0.34);
+    --contact-ease: 280ms cubic-bezier(.2, .8, .2, 1);
+
+
+
+
+}
+
+/* Page background and floating light. The existing inline background is
+   deliberately overridden so the section always has the full treatment. */
+#contact.page-hero {
+    isolation: isolate;
+    position: relative;
+    overflow: hidden;
+    padding: 48px 0 96px !important;
+    color: var(--contact-text);
+    background: radial-gradient(circle at 10% 8%, rgba(84, 162, 255, .21), transparent 28rem), radial-gradient(circle at 92% 88%, rgba(148, 104, 255, .2), transparent 30rem), linear-gradient(130deg, var(--contact-bg), var(--contact-bg-deep)) !important;
+}
+
+#contact::before,
+#contact::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 26rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(28px);
+    opacity: .55;
+    animation: contact-float 13s ease-in-out infinite;
+}
+
+#contact::before {
+    top: 9rem;
+    left: -13rem;
+    background: rgba(48, 160, 255, .36);
+}
+
+#contact::after {
+    right: -12rem;
+    bottom: -4rem;
+    background: rgba(147, 85, 255, .3);
+    animation-delay: -6s;
+}
+
+#contact .wrap {
+    position: relative;
+    z-index: 1;
+    width: min(1160px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+/* Hero heading */
+#contact .section-head {
+    max-width: 780px;
+    margin: 0 auto 44px;
+    text-align: center;
+}
+
+#contact .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem 1rem;
+    border: 1px solid rgba(117, 183, 255, .38);
+    border-radius: 999px;
+    color: #a8d2ff;
+    background: rgba(69, 148, 255, .1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, .1);
+    font-size: .73rem;
+    font-weight: 800;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+#contact .section-head h2 {
+    margin: 18px 0 14px;
+    color: var(--contact-text);
+    font-size: clamp(2.25rem, 5vw, 4.15rem);
+    line-height: 1.06;
+    letter-spacing: -.055em;
+    background: linear-gradient(100deg, #fff 12%, #bfe0ff 48%, #d6c9ff 88%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#contact .section-head p {
+    margin-inline: auto;
+    color: var(--contact-muted) !important;
+    font-size: 1.02rem;
+    line-height: 1.8;
+}
+
+/* Two-column contact area */
+#contact .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(28px, 4vw, 54px);
+}
+
+#contact .contact-list {
+    display: grid;
+    gap: 15px;
+}
+
+/* Information cards (Email / LinkedIn / GitHub / WhatsApp) */
+#contact .contact-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 18px;
+    overflow: hidden;
+    border: 1px solid var(--contact-border);
+    border-radius: var(--contact-radius);
+    color: var(--contact-text);
+    text-decoration: none;
+    background: var(--contact-surface);
+    box-shadow: var(--contact-shadow), inset 0 1px rgba(255, 255, 255, .08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition: transform var(--contact-ease), border-color var(--contact-ease), box-shadow var(--contact-ease), background var(--contact-ease);
+}
+
+    #contact .contact-item::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 4px;
+        background: linear-gradient(180deg, var(--contact-cyan), var(--contact-secondary));
+        transition: width var(--contact-ease), opacity var(--contact-ease);
+    }
+
+    #contact .contact-item:hover {
+        transform: translateY(-5px) scale(1.012);
+        border-color: rgba(125, 189, 255, .55);
+        background: var(--contact-surface-hover);
+        box-shadow: 0 23px 52px rgba(10, 81, 182, .25), inset 0 1px rgba(255, 255, 255, .13);
+    }
+
+        #contact .contact-item:hover::before {
+            width: 100%;
+            opacity: .1;
+        }
+
+/* Icon badge — authentic app-style glyph in a rounded tile */
+#contact .ic {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    flex: 0 0 58px;
+    width: 58px;
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 17px;
+    background: linear-gradient(135deg, rgba(84, 162, 255, .9), rgba(148, 104, 255, .92));
+    box-shadow: 0 9px 22px rgba(72, 113, 226, .27);
+    transition: transform var(--contact-ease), background var(--contact-ease), box-shadow var(--contact-ease);
+}
+
+    #contact .ic svg {
+        width: 26px;
+        height: 26px;
+        transition: transform var(--contact-ease);
+    }
+
+#contact .contact-item:hover .ic {
+    transform: rotate(-6deg) scale(1.08);
+}
+
+#contact .contact-item > span:nth-child(2) {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+}
+
+#contact .k {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 750;
+}
+
+#contact .v {
+    color: var(--contact-muted);
+    font-size: .89rem;
+    overflow-wrap: anywhere;
+}
+
+#contact .go {
+    position: relative;
+    z-index: 1;
+    margin-left: auto;
+    color: #a8d2ff;
+    font-size: .9rem;
+    font-weight: 750;
+    white-space: nowrap;
+    transition: transform var(--contact-ease), color var(--contact-ease);
+}
+
+#contact .contact-item:hover .go {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* -----------------------------------------------------------------
+   PLATFORM BRAND TREATMENTS
+   Each card gets its own accent stripe, glow, border and icon-tile
+   fill using the platform's official brand color. Hover state only —
+   the resting state stays on the neutral glass look above so the row
+   reads as one consistent set until the user engages with it.
+------------------------------------------------------------------ */
+
+/* Email — Gmail red */
+#contact .contact-item.email::before {
+    background: linear-gradient(180deg, #ff8a80, #ea4335);
+}
+
+#contact .contact-item.email .ic {
+    background: linear-gradient(135deg, #ea4335, #c5221f);
+}
+
+#contact .contact-item.email:hover {
+    border-color: rgba(234, 67, 53, .6);
+    background: rgba(234, 67, 53, .12);
+    box-shadow: 0 23px 52px rgba(234, 67, 53, .28), inset 0 1px rgba(255, 255, 255, .13);
+}
+
+    #contact .contact-item.email:hover .ic {
+        background: linear-gradient(135deg, #ff6f61, #ea4335);
+        box-shadow: 0 0 0 6px rgba(234, 67, 53, .16), 0 12px 26px rgba(234, 67, 53, .4);
+    }
+
+/* LinkedIn — official blue */
+#contact .contact-item.linkedin::before {
+    background: linear-gradient(180deg, #5aa5ff, #0a66c2);
+}
+
+#contact .contact-item.linkedin .ic {
+    background: linear-gradient(135deg, #0a66c2, #004182);
+}
+
+#contact .contact-item.linkedin:hover {
+    border-color: rgba(10, 102, 194, .6);
+    background: rgba(10, 102, 194, .14);
+    box-shadow: 0 23px 52px rgba(10, 102, 194, .3), inset 0 1px rgba(255, 255, 255, .13);
+}
+
+    #contact .contact-item.linkedin:hover .ic {
+        background: linear-gradient(135deg, #1a86e5, #0a66c2);
+        box-shadow: 0 0 0 6px rgba(10, 102, 194, .18), 0 12px 26px rgba(10, 102, 194, .42);
+    }
+
+/* GitHub — dark / monochrome, lifted with a soft silver halo so it still
+   reads clearly against the dark page background */
+#contact .contact-item.github::before {
+    background: linear-gradient(180deg, #c9d1d9, #6e7681);
+}
+
+#contact .contact-item.github .ic {
+    background: linear-gradient(135deg, #2d333b, #0d1117);
+    border-color: rgba(255, 255, 255, .22);
+}
+
+#contact .contact-item.github:hover {
+    border-color: rgba(230, 237, 243, .45);
+    background: rgba(230, 237, 243, .08);
+    box-shadow: 0 23px 52px rgba(0, 0, 0, .45), inset 0 1px rgba(255, 255, 255, .16);
+}
+
+    #contact .contact-item.github:hover .ic {
+        background: linear-gradient(135deg, #3d4450, #0d1117);
+        box-shadow: 0 0 0 6px rgba(230, 237, 243, .14), 0 12px 26px rgba(0, 0, 0, .5);
+    }
+
+/* WhatsApp — official green */
+#contact .contact-item.whatsapp::before {
+    background: linear-gradient(180deg, #6fe08c, #25d366);
+}
+
+#contact .contact-item.whatsapp .ic {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+#contact .contact-item.whatsapp:hover {
+    border-color: rgba(37, 211, 102, .6);
+    background: rgba(37, 211, 102, .13);
+    box-shadow: 0 23px 52px rgba(37, 211, 102, .3), inset 0 1px rgba(255, 255, 255, .13);
+}
+
+    #contact .contact-item.whatsapp:hover .ic {
+        background: linear-gradient(135deg, #37e670, #25d366);
+        box-shadow: 0 0 0 6px rgba(37, 211, 102, .16), 0 12px 26px rgba(37, 211, 102, .42);
+    }
+
+/* Form panel */
+#contact h3 {
+    color: #fff;
+    font-weight: 750;
+}
+
+#contact .msg {
+    padding: clamp(22px, 4vw, 36px);
+    border: 1px solid var(--contact-border);
+    border-radius: calc(var(--contact-radius) + 4px);
+    background: var(--contact-surface);
+    box-shadow: var(--contact-shadow), inset 0 1px rgba(255, 255, 255, .08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Form fields now stack one-per-line (full width) instead of pairing
+   two fields side-by-side. */
+#contact .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+#contact .msg input,
+#contact .msg textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 14px;
+    outline: none;
+    color: #fff;
+    background: rgba(3, 13, 33, .25);
+    box-shadow: inset 0 1px rgba(255, 255, 255, .04);
+    font: inherit;
+    transition: border-color var(--contact-ease), background var(--contact-ease), box-shadow var(--contact-ease), transform var(--contact-ease);
+}
+
+#contact .msg input {
+    min-height: 53px;
+    padding: 0 15px;
+}
+
+#contact .msg textarea {
+    min-height: 110px;
+    margin-bottom: 17px;
+    padding: 15px;
+    resize: vertical;
+}
+
+    #contact .msg input::placeholder,
+    #contact .msg textarea::placeholder {
+        color: #9eacc5;
+        opacity: 1;
+    }
+
+    #contact .msg input:focus,
+    #contact .msg textarea:focus {
+        border-color: rgba(111, 180, 255, .82);
+        background: rgba(46, 125, 239, .1);
+        box-shadow: 0 0 0 4px rgba(84, 162, 255, .16);
+    }
+
+    #contact .msg input:invalid:not(:placeholder-shown),
+    #contact .msg textarea:invalid:not(:placeholder-shown) {
+        border-color: rgba(255, 154, 162, .75);
+    }
+
+#contact .btn.solid {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 53px;
+    padding: 0 25px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 14px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(110deg, var(--contact-primary), var(--contact-secondary));
+    box-shadow: 0 14px 29px rgba(80, 121, 244, .32);
+    font: inherit;
+    font-weight: 800;
+    transition: transform var(--contact-ease), box-shadow var(--contact-ease), filter var(--contact-ease);
+}
+
+    #contact .btn.solid:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 38px rgba(95, 110, 245, .48);
+        filter: saturate(1.15) brightness(1.06);
+    }
+
+    #contact .btn.solid:active {
+        transform: translateY(0);
+    }
+
+    #contact .btn.solid:focus-visible,
+    #contact .social-row a:focus-visible,
+    #contact .contact-item:focus-visible {
+        outline: 3px solid var(--contact-cyan);
+        outline-offset: 4px;
+    }
+
+@keyframes contact-float {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(34px, -24px, 0) scale(1.08);
+    }
+}
+
+/* =========================================
+   FACEBOOK + INSTAGRAM FULL CONTACT CARDS
+   (single source of truth — no duplicate
+   .social-row rules elsewhere in this file)
+
+   FIX: cards were shrinking to fit their
+   text content instead of filling the row,
+   because they were plain flex children with
+   no explicit width. Forcing width:100%,
+   min-width:0 and grid-column:1/-1 makes them
+   behave exactly like .contact-item above.
+========================================= */
+#contact .social-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+#contact .social-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 96px;
+    padding: 18px;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    background: var(--contact-surface);
+    border: 1px solid var(--contact-border);
+    border-radius: var(--contact-radius);
+    box-shadow: var(--contact-shadow), inset 0 1px rgba(255, 255, 255, .08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    justify-self: stretch;
+    transition: transform var(--contact-ease), border-color var(--contact-ease), box-shadow var(--contact-ease), background var(--contact-ease);
+}
+
+    #contact .social-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 4px;
+        transition: width var(--contact-ease), opacity var(--contact-ease);
+    }
+
+    #contact .social-card:hover {
+        transform: translateY(-5px) scale(1.012);
+    }
+
+        #contact .social-card:hover::before {
+            width: 100%;
+            opacity: .1;
+        }
+
+#contact .social-icon {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    flex: 0 0 58px;
+    width: 58px;
+    aspect-ratio: 1;
+    border-radius: 17px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    background: linear-gradient(135deg, var(--contact-primary), var(--contact-secondary));
+    box-shadow: 0 9px 22px rgba(72, 113, 226, .27);
+    transition: transform var(--contact-ease), background var(--contact-ease), box-shadow var(--contact-ease);
+}
+
+    #contact .social-icon svg {
+        width: 27px;
+        height: 27px;
+    }
+
+#contact .social-info {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+#contact .social-title {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 750;
+}
+
+#contact .social-sub {
+    color: var(--contact-muted);
+    font-size: .89rem;
+    overflow-wrap: anywhere;
+}
+
+#contact .social-arrow {
+    position: relative;
+    z-index: 2;
+    margin-left: auto;
+    color: #a8d2ff;
+    font-size: .9rem;
+    font-weight: 750;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    transition: transform var(--contact-ease), color var(--contact-ease);
+}
+
+#contact .social-card:hover .social-icon {
+    transform: rotate(-6deg) scale(1.08);
+}
+
+#contact .social-card:hover .social-arrow {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Facebook — official blue */
+#contact .social-card.facebook::before {
+    background: linear-gradient(180deg, #53aaff, #1877f2);
+}
+
+#contact .social-card.facebook .social-icon {
+    background: linear-gradient(135deg, #1877f2, #0d5cd6);
+}
+
+#contact .social-card.facebook:hover {
+    border-color: rgba(83, 170, 255, .75);
+    background: rgba(24, 119, 242, .17);
+    box-shadow: 0 23px 52px rgba(24, 119, 242, .3);
+}
+
+    #contact .social-card.facebook:hover .social-icon {
+        background: linear-gradient(135deg, #3d94ff, #1877f2);
+        box-shadow: 0 0 0 6px rgba(24, 119, 242, .18), 0 12px 26px rgba(24, 119, 242, .42);
+    }
+
+/* Instagram — official gradient */
+#contact .social-card.instagram::before {
+    background: linear-gradient(180deg, #f58529, #dd2a7b 48%, #8134af 75%, #515bd4);
+}
+
+#contact .social-card.instagram .social-icon {
+    background: linear-gradient(135deg, #feda75 0%, #fa7e1e 22%, #d62976 55%, #962fbf 78%, #4f5bd5 100%);
+}
+
+#contact .social-card.instagram:hover {
+    border-color: rgba(230, 90, 155, .75);
+    background: rgba(221, 42, 123, .14);
+    box-shadow: 0 23px 52px rgba(221, 42, 123, .28);
+}
+
+    #contact .social-card.instagram:hover .social-icon {
+        background: linear-gradient(135deg, #feda75 0%, #fa7e1e 22%, #d62976 55%, #962fbf 78%, #4f5bd5 100%);
+        box-shadow: 0 0 0 6px rgba(221, 42, 123, .18), 0 12px 26px rgba(221, 42, 123, .42);
+    }
+
+@media (max-width: 900px) {
+    #contact.page-hero {
+        padding-top: 40px !important;
+    }
+
+    #contact .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    #contact.page-hero {
+        padding: 36px 0 68px !important;
+    }
+
+    #contact .wrap {
+        width: min(100% - 28px, 1160px);
+    }
+
+    #contact .section-head {
+        margin-bottom: 38px;
+        text-align: left;
+    }
+
+        #contact .section-head p {
+            margin-left: 0;
+        }
+
+    #contact .contact-item {
+        gap: 13px;
+        padding: 15px;
+    }
+
+    #contact .ic {
+        flex-basis: 49px;
+        width: 49px;
+        border-radius: 15px;
+    }
+
+        #contact .ic svg {
+            width: 21px;
+            height: 21px;
+        }
+
+    #contact .go {
+        display: none;
+    }
+
+    #contact .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    #contact .msg {
+        padding: 20px;
+    }
+
+    #contact .btn.solid {
+        width: 100%;
+    }
+
+    /* social cards */
+    #contact .social-card {
+        min-height: 82px;
+        gap: 13px;
+        padding: 15px;
+    }
+
+    #contact .social-icon {
+        flex-basis: 49px;
+        width: 49px;
+        border-radius: 15px;
+    }
+
+        #contact .social-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+    #contact .social-arrow {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #contact *, #contact::before, #contact::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}

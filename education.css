@@ -1,0 +1,431 @@
+/* ============================================================
+   EDUCATION PAGE — PREMIUM GLASSMORPHISM DESIGN
+   Modern Developer Portfolio Style
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+
+
+:root {
+    /* Colors */
+    --bg-main: #060b18;
+    --bg-card: rgba(255,255,255,0.08);
+    --primary: #00e5ff;
+    --secondary: #8b5cf6;
+    --gold: #fbbf24;
+    --success: #22c55e;
+    --text-white: #ffffff;
+    --text-light: #cbd5e1;
+    --text-muted: #94a3b8;
+    /* Glass */
+    --glass-border: rgba(255,255,255,0.15);
+    /* Radius */
+    --radius: 22px;
+    /* Animation */
+    --transition: .35s cubic-bezier(.4,0,.2,1);
+    /* Shadow */
+    --shadow: 0 20px 50px rgba(0,0,0,.35);
+}
+
+
+
+/* ===========================
+   HERO SECTION
+=========================== */
+
+
+.edu-hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 40px 20px 34px;
+    text-align: center;
+    background: radial-gradient(circle at top left, rgba(0,229,255,.25), transparent 35%), radial-gradient(circle at bottom right, rgba(139,92,246,.25), transparent 35%), var(--bg-main);
+}
+
+
+
+    .edu-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient( rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient( 90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+        background-size: 40px 40px;
+        animation: gridMove 20s linear infinite;
+    }
+
+
+@keyframes gridMove {
+
+    from {
+        transform: translate(0,0);
+    }
+
+    to {
+        transform: translate(40px,40px);
+    }
+}
+
+
+
+.edu-hero-inner {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+.edu-hero h1 {
+    font-family: "Space Grotesk";
+    color: white;
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+
+
+.edu-hero-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 0 20px var(--primary));
+}
+
+
+
+.edu-hero-subtitle {
+    display: none;
+}
+
+
+
+/* Breadcrumb */
+
+
+.breadcrumb {
+    display: inline-flex;
+    gap: 12px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+}
+
+
+
+    .breadcrumb a {
+        color: white;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+
+
+/* Decorative shapes from the old design aren't used in this layout —
+   hidden so they don't add extra height to the hero. */
+.edu-hero .shape {
+    display: none;
+}
+
+
+
+/* ===========================
+   EDUCATION SECTION
+=========================== */
+
+
+.edu-section {
+    position: relative;
+    padding: clamp(2.5rem, 5vw, 4rem) 1.5rem clamp(4.5rem, 9vw, 8rem);
+    background: radial-gradient( circle at 20% 20%, rgba(0,229,255,.1), transparent 30%), var(--bg-main);
+}
+
+    /* NEW — gradient seam under the hero, matching the About page's
+       terminal-scanline detail. Nothing else on this page changed. */
+    .edu-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #ff7a1a, #ff1f4d, #ffb703, transparent);
+        opacity: 0.8;
+    }
+
+
+
+/* Timeline */
+
+
+.edu-timeline {
+    width: min(100%, 820px);
+    margin: auto;
+    position: relative;
+    padding-left: 2.6rem;
+}
+
+
+
+    .edu-timeline::before {
+        content: "";
+        position: absolute;
+        left: 0.55rem;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background: linear-gradient( var(--primary), var(--secondary), var(--gold));
+    }
+
+
+
+/* Item */
+
+
+.edu-item {
+    position: relative;
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+
+
+/* Dot */
+
+
+.edu-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 1.9rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    background: var(--bg-main);
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 15px var(--primary);
+    transition: .4s;
+}
+
+
+
+.edu-item:hover .edu-dot {
+    transform: scale(1.4);
+    background: var(--primary);
+}
+
+
+
+/* Card */
+
+
+.edu-card {
+    position: relative;
+    padding: 1.6rem 1.75rem;
+    border-radius: var(--radius);
+    background: linear-gradient( 145deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow);
+    color: white;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+
+
+    /* glowing line */
+
+
+    .edu-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: linear-gradient( 90deg, var(--primary), var(--secondary));
+        transition: .5s;
+    }
+
+
+
+    .edu-card:hover::before {
+        width: 100%;
+    }
+
+
+
+    .edu-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: var(--primary);
+        box-shadow: 0 25px 60px rgba(0,229,255,.25);
+    }
+
+
+
+/* Text */
+
+
+.edu-degree {
+    font-family: "Space Grotesk";
+    font-size: 1.3rem;
+    margin: 0.75rem 0 0.2rem;
+}
+
+
+
+.edu-provider {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+
+
+.edu-meta {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    margin: 0 0 0.35rem;
+}
+
+
+    .edu-meta i {
+        color: var(--primary);
+    }
+
+
+
+/* Description */
+
+
+.edu-points {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+
+
+    .edu-points li::marker {
+        color: var(--primary);
+    }
+
+
+
+/* Tags */
+
+
+.edu-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+
+.tag {
+    padding: 0.32rem 0.7rem;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    font-family: "JetBrains Mono";
+    color: white;
+    background: rgba(0,229,255,.1);
+    border: 1px solid rgba(0,229,255,.3);
+    transition: var(--transition);
+}
+
+
+
+    .tag:hover {
+        background: var(--primary);
+        color: #001018;
+        transform: translateY(-3px);
+    }
+
+
+
+
+/* ===========================
+ BADGES
+=========================== */
+
+
+.badge {
+    display: inline-flex;
+    padding: 0.4rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-family: "JetBrains Mono";
+    font-weight: 700;
+}
+
+
+.badge-current {
+    color: #22c55e;
+    background: rgba(34,197,94,.15);
+}
+
+
+.badge-advanced {
+    color: var(--primary);
+    background: rgba(0,229,255,.15);
+}
+
+
+.badge-certified {
+    color: var(--gold);
+    background: rgba(251,191,36,.15);
+}
+
+
+
+
+/* ===========================
+ RESPONSIVE
+=========================== */
+
+
+@media(max-width:640px) {
+
+
+    .edu-hero {
+        padding: 52px 16px 46px;
+    }
+
+        .edu-hero h1 {
+            font-size: 2.1rem;
+        }
+
+    .breadcrumb {
+        font-size: 0.85rem;
+        padding: 7px 14px;
+    }
+
+    .edu-section {
+        padding: 3.5rem 1rem 4rem;
+    }
+
+
+    .edu-timeline {
+        padding-left: 2rem;
+    }
+
+
+    .edu-card {
+        padding: 1.3rem 1.15rem;
+    }
+
+
+    .edu-degree {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+    .edu-hero {
+        padding: 46px 24px 40px;
+    }
+}

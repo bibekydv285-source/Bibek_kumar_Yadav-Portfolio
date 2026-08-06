@@ -1,0 +1,86 @@
+/* =========================================================
+   site.css � base tokens, reset, typography
+   Load on: every page (via _Layout.cshtml), before all
+   other stylesheets (hero.css, nav.css, etc. depend on
+   the CSS variables defined here).
+   ========================================================= */
+:root {
+    --bg: #0c0d15;
+    --bg-alt: #12131c;
+    --panel: #161825;
+    --line: rgba(255,255,255,0.08);
+    --ink: #f2f2f5;
+    --ink-dim: #9a9cb0;
+    --accent: #f5a623;
+    --accent-2: #7c6cf0;
+    --accent-3: #43d9a3;
+    --cyan: #25d5ea;
+    --cyan-dim: #1b8b9c;
+    --pink: #ff2d78;
+    --white: #f4f6fb;
+    --muted: #9aa5b8;
+    --radius: 10px;
+    --max: 1200px;
+    --mono: 'JetBrains Mono','Fira Code',ui-monospace,monospace;
+    --disp: 'Sora','Inter',system-ui,sans-serif;
+    --body: 'Poppins','Segoe UI',system-ui,sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* starfield backdrop used behind the hero section */
+.hero {
+    position: relative;
+    isolation: isolate;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.35) 0, transparent 60%), radial-gradient(1.5px 1.5px at 25% 65%, rgba(255,255,255,.25) 0, transparent 60%), radial-gradient(2px 2px at 45% 15%, rgba(255,255,255,.3) 0, transparent 60%), radial-gradient(1.5px 1.5px at 65% 80%, rgba(255,255,255,.18) 0, transparent 60%), radial-gradient(2px 2px at 85% 30%, rgba(255,255,255,.28) 0, transparent 60%), radial-gradient(1.5px 1.5px at 92% 60%, rgba(255,255,255,.22) 0, transparent 60%), radial-gradient(1.5px 1.5px at 5% 85%, rgba(255,255,255,.2) 0, transparent 60%);
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.deco-dot {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    opacity: .7;
+}

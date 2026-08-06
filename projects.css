@@ -1,0 +1,521 @@
+/* =========================================================
+   PROJECTS PAGE — PREMIUM GLASSMORPHISM DESIGN
+   Modern Developer Portfolio Style
+   Hero resized to match about-hero proportions (compact, no min-height)
+   ========================================================= */
+
+
+/* ================= HERO SECTION ================= */
+
+.Project-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    padding: 40px 20px 34px;
+    overflow: hidden;
+    background: radial-gradient(circle at 20% 20%, rgba(56,189,248,.18), transparent 40%), radial-gradient(circle at 80% 80%, rgba(168,85,247,.18), transparent 45%), linear-gradient(135deg,#050816,#0f172a);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+
+    /* Animated background glow */
+
+    .Project-hero::before {
+        content: "";
+        position: absolute;
+        width: 340px;
+        height: 340px;
+        background: linear-gradient( 135deg, #38bdf8, #a855f7, #ec4899 );
+        filter: blur(120px);
+        opacity: .25;
+        animation: heroGlow 8s infinite alternate;
+    }
+
+
+@keyframes heroGlow {
+
+    from {
+        transform: translate(-80px,-40px);
+    }
+
+    to {
+        transform: translate(80px,40px);
+    }
+}
+
+
+.Project-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(1.9rem,3.6vw,2.6rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient( 90deg, #38bdf8, #a855f7, #ec4899 );
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+
+/* Breadcrumb */
+
+
+.Project-hero .breadcrumb {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 18px;
+    border-radius: 50px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.12);
+    transition: .35s;
+}
+
+
+    .Project-hero .breadcrumb:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(56,189,248,.25);
+    }
+
+
+
+    .Project-hero .breadcrumb a {
+        color: #94a3b8;
+        transition: .3s;
+    }
+
+
+        .Project-hero .breadcrumb a:hover {
+            color: #38bdf8;
+        }
+
+
+    .Project-hero .breadcrumb .current {
+        color: #38bdf8;
+        font-weight: 700;
+    }
+
+
+
+/* Floating Shapes */
+
+
+.Project-hero .shape {
+    position: absolute;
+    opacity: .8;
+    pointer-events: none;
+}
+
+
+
+.shape.circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+
+
+.circle.red {
+    background: #ef4444;
+    top: 25%;
+    left: 12%;
+    animation: float 6s infinite;
+}
+
+
+
+.circle.blue {
+    background: #38bdf8;
+    right: 15%;
+    bottom: 25%;
+    animation: float 7s infinite;
+}
+
+
+
+.shape.diamond {
+    width: 14px;
+    height: 14px;
+    background: #a855f7;
+    transform: rotate(45deg);
+    top: 30%;
+    right: 25%;
+    animation: float 5s infinite;
+}
+
+
+
+@keyframes float {
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+
+/* ================= PROJECT GRID ================= */
+
+
+.proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 28px;
+}
+
+
+
+@media(max-width:950px) {
+
+    .proj-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media(max-width:650px) {
+
+    .proj-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* ================= PROJECT CARD ================= */
+
+
+.proj-card {
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+    border-radius: 22px;
+    background: linear-gradient( 145deg, rgba(255,255,255,.09), rgba(255,255,255,.03) );
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(18px);
+    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+
+
+    /* animated glow */
+
+
+    .proj-card::before {
+        content: "";
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient( 120deg, transparent, rgba(56,189,248,.25), transparent );
+        transform: rotate(25deg);
+        transition: .7s;
+    }
+
+
+
+    .proj-card:hover::before {
+        top: 100%;
+        left: 100%;
+    }
+
+
+
+    .proj-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: #38bdf8;
+        box-shadow: 0 25px 60px rgba(0,0,0,.45), 0 0 35px rgba(56,189,248,.25);
+    }
+
+
+
+/* top */
+
+
+.proj-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+
+
+/* Status */
+
+
+.proj-status {
+    font-family: var(--mono);
+    font-size: .75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #22c55e;
+}
+
+
+    .proj-status i {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #22c55e;
+        animation: pulse 2s infinite;
+    }
+
+
+
+@keyframes pulse {
+
+
+    50% {
+        box-shadow: 0 0 0 8px transparent;
+    }
+}
+
+
+
+/* Year */
+
+
+.proj-year {
+    font-size: .75rem;
+    color: #94a3b8;
+}
+
+
+
+/* Title */
+
+
+.proj-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    transition: .3s;
+}
+
+
+
+.proj-card:hover h3 {
+    color: #38bdf8;
+}
+
+
+
+/* Description */
+
+
+.proj-card p {
+    color: #94a3b8;
+    line-height: 1.7;
+    font-size: .9rem;
+    margin-bottom: 20px;
+}
+
+
+
+/* Tags */
+
+
+.proj-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+
+
+    .proj-tags .pill {
+        padding: 6px 14px;
+        border-radius: 30px;
+        background: rgba(56,189,248,.08);
+        border: 1px solid rgba(56,189,248,.2);
+        transition: .3s;
+    }
+
+
+
+        .proj-tags .pill:hover {
+            background: #38bdf8;
+            color: #020617;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+
+
+/* Links */
+
+
+.proj-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--mono);
+    font-size: .8rem;
+}
+
+
+
+    .proj-links a {
+        color: #38bdf8;
+        position: relative;
+        transition: .3s;
+    }
+
+
+
+        .proj-links a:hover {
+            color: #ec4899;
+            transform: translateY(-3px);
+        }
+
+
+
+        .proj-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient( 90deg, #38bdf8, #ec4899 );
+            transition: .3s;
+        }
+
+
+
+        .proj-links a:hover::after {
+            width: 100%;
+        }
+
+
+
+/* Live Site button — icon layout + hover glow (base color/shape defined sitewide) */
+
+.proj-links .proj-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform .3s ease, box-shadow .3s ease, filter .3s ease;
+}
+
+    .proj-links .proj-btn-primary svg {
+        flex-shrink: 0;
+    }
+
+    .proj-links .proj-btn-primary:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 12px 28px rgba(139,92,246,.45);
+        filter: brightness(1.08);
+    }
+
+    /* icon button already has its own arrow motion; skip the underline sweep */
+    .proj-links .proj-btn-primary::after {
+        content: none;
+    }
+
+
+
+/* LinkedIn pill button (outlined, icon + label, like the "In progress" pill) */
+
+.proj-links .proj-btn-pill--linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: #94a3b8;
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(255,255,255,.14);
+    font-family: var(--mono);
+    font-size: .8rem;
+}
+
+    .proj-links .proj-btn-pill--linkedin svg {
+        flex-shrink: 0;
+        color: #94a3b8;
+        transition: .3s;
+    }
+
+    .proj-links .proj-btn-pill--linkedin:hover {
+        color: #fff;
+        border-color: #0A66C2;
+        background: rgba(10,102,194,.12);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(10,102,194,.25);
+    }
+
+    .proj-links .proj-btn-pill--linkedin:hover svg {
+        color: #0A66C2;
+    }
+
+    /* pill buttons don't get the underline sweep used by plain text links */
+    .proj-links .proj-btn-pill--linkedin::after {
+        content: none;
+    }
+
+
+
+/* GitHub icon button (replaces plain "Code" text link) */
+
+.proj-links .proj-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #38bdf8;
+    background: rgba(56,189,248,.08);
+    border: 1px solid rgba(56,189,248,.2);
+    flex-shrink: 0;
+    transition: .3s;
+}
+
+    .proj-links .proj-btn-icon svg {
+        display: block;
+        transition: .3s;
+    }
+
+    .proj-links .proj-btn-icon:hover {
+        color: #020617;
+        background: linear-gradient( 90deg, #38bdf8, #ec4899 );
+        border-color: transparent;
+        transform: translateY(-3px) scale(1.06);
+        box-shadow: 0 10px 24px rgba(56,189,248,.35);
+    }
+
+    /* icon buttons don't get the underline sweep used by text links */
+    .proj-links .proj-btn-icon::after {
+        content: none;
+    }
+
+
+
+/* Mobile */
+
+@media(max-width:700px) {
+
+
+    .Project-hero {
+        padding: 52px 16px 46px;
+    }
+
+        .Project-hero .shape {
+            display: none;
+        }
+
+
+    .proj-card {
+        padding: 22px;
+    }
+}

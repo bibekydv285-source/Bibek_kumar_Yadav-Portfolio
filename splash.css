@@ -1,0 +1,220 @@
+/* ==========================================================
+   SPLASH SCREEN
+   ========================================================== */
+
+.splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(circle at top, #1e293b 0%, #0f172a 45%, #020617 100%);
+    transition: opacity .6s ease, visibility .6s ease;
+}
+
+    .splash.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* Floating glow */
+
+    .splash::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: rgba(59,130,246,.12);
+        filter: blur(120px);
+        animation: glow 8s ease-in-out infinite alternate;
+    }
+
+@keyframes glow {
+
+    from {
+        transform: translate(-120px,-60px);
+    }
+
+    to {
+        transform: translate(120px,80px);
+    }
+}
+
+/* ==========================================================
+   CARD
+   ========================================================== */
+
+.splash-inner {
+    position: relative;
+    width: min(430px,90vw);
+    padding: 45px;
+    text-align: center;
+    border-radius: 28px;
+    background: rgba(15,23,42,.78);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 30px 80px rgba(0,0,0,.45), inset 0 1px rgba(255,255,255,.05);
+    animation: fadeUp .8s ease;
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================
+   PROFILE
+   ========================================================== */
+
+.splash-photo {
+    position: relative;
+    width: 185px;
+    height: 185px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient( 45deg, #3b82f6, #06b6d4, #22c55e, #8b5cf6, #3b82f6);
+    background-size: 300%;
+    animation: borderMove 6s linear infinite;
+}
+
+    .splash-photo::before {
+        content: "";
+        position: absolute;
+        inset: -15px;
+        border-radius: 50%;
+        background: rgba(59,130,246,.22);
+        filter: blur(25px);
+        z-index: -1;
+    }
+
+    .splash-photo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #0f172a;
+    }
+
+.splash-badge {
+    position: absolute;
+    bottom: 10px;
+    right: -8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #22c55e;
+    color: white;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   TEXT
+   ========================================================== */
+
+.splash h1 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+    .splash h1 em {
+        color: #38bdf8;
+        font-style: normal;
+    }
+
+.splash p {
+    color: #94a3b8;
+    margin-bottom: 25px;
+    font-size: .95rem;
+}
+
+/* ==========================================================
+   TAGS
+   ========================================================== */
+
+.splash-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+    .splash-tags span {
+        padding: 8px 15px;
+        border-radius: 50px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.08);
+        color: #cbd5e1;
+        font-size: .8rem;
+        transition: .3s;
+    }
+
+        .splash-tags span:hover {
+            background: #3b82f6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+/* ==========================================================
+   PROGRESS
+   ========================================================== */
+
+.splash-progress {
+    width: 100%;
+}
+
+.splash-bar {
+    width: 100%;
+    height: 8px;
+    border-radius: 50px;
+    overflow: hidden;
+    background: #1e293b;
+}
+
+.splash-fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient( 90deg, #3b82f6, #06b6d4, #22c55e);
+    box-shadow: 0 0 15px #3b82f6;
+    transition: width .1s linear;
+}
+
+#splashPercent {
+    display: block;
+    margin-top: 12px;
+    color: #cbd5e1;
+    font-size: .85rem;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================
+   ANIMATION
+   ========================================================== */
+
+@keyframes borderMove {
+
+    from {
+        background-position: 0%;
+    }
+
+    to {
+        background-position: 300%;
+    }
+}

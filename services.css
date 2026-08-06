@@ -1,0 +1,636 @@
+/* ============================================================
+   SERVICES PAGE — PREMIUM DEVELOPER PORTFOLIO REDESIGN
+   Palette: "Ember & Verdant" — warm obsidian base, gold / emerald /
+   terracotta / rose / lime / copper accents. No blue or purple anywhere.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+
+
+:root {
+    /* ---------- Base surface ---------- */
+    --bg-main: #0b0a08; /* warm near-black, not blue-black */
+    --bg-main-alt: #131009;
+    --bg-card: rgba(255,255,255,0.06);
+    --glass-border: rgba(255,255,255,0.12);
+    --text-white: #fbf8f3;
+    --text-light: #d8d1c4;
+    --text-muted: #96897a;
+    /* ---------- Structure ---------- */
+    --radius-lg: 26px;
+    --radius-md: 18px;
+    --shadow: 0 22px 55px rgba(0,0,0,.45);
+    --ease: cubic-bezier(.22,.8,.28,1);
+    /* ---------- Hero accent (gold → terracotta) ---------- */
+    --hero-a: #f2b544; /* warm gold */
+    --hero-a-rgb: 242,181,68;
+    --hero-b: #e2653e; /* terracotta */
+    --hero-b-rgb: 226,101,62;
+    --hero-c: #3fae7a; /* deep emerald, used sparingly for contrast */
+    --hero-c-rgb: 63,174,122;
+    --hero-d: #d94f70; /* rose — stands in for the About page's "red" shape accent */
+    --hero-d-rgb: 217,79,112;
+    /* ---------- Six distinct card accent pairs ---------- */
+    --c1-a: #f2b544;
+    --c1-a-rgb: 242,181,68;
+    --c1-b: #e2653e;
+    --c1-b-rgb: 226,101,62; /* gold → terracotta */
+    --c2-a: #3fae7a;
+    --c2-a-rgb: 63,174,122;
+    --c2-b: #a8d24a;
+    --c2-b-rgb: 168,210,74; /* emerald → lime */
+    --c3-a: #f4795b;
+    --c3-a-rgb: 244,121,91;
+    --c3-b: #f2b544;
+    --c3-b-rgb: 242,181,68; /* coral → gold */
+    --c4-a: #d94f70;
+    --c4-a-rgb: 217,79,112;
+    --c4-b: #f4795b;
+    --c4-b-rgb: 244,121,91; /* rose → coral */
+    --c5-a: #b8863a;
+    --c5-a-rgb: 184,134,58;
+    --c5-b: #3fae7a;
+    --c5-b-rgb: 63,174,122; /* bronze → emerald */
+    --c6-a: #a8d24a;
+    --c6-a-rgb: 168,210,74;
+    --c6-b: #d94f70;
+    --c6-b-rgb: 217,79,112; /* lime → rose */
+}
+
+
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.services-hero {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 40px 20px 34px;
+    text-align: center;
+    background: var(--bg-main);
+}
+
+    /* layered glow orbs — the "unique background" */
+    .services-hero::before {
+        content: "";
+        position: absolute;
+        inset: -20%;
+        background: radial-gradient(circle at 18% 20%, rgba(var(--hero-a-rgb),.30), transparent 32%), radial-gradient(circle at 82% 12%, rgba(var(--hero-b-rgb),.24), transparent 34%), radial-gradient(circle at 50% 100%, rgba(var(--hero-c-rgb),.20), transparent 40%);
+        filter: blur(10px);
+        animation: heroDrift 16s ease-in-out infinite alternate;
+        z-index: 0;
+    }
+
+    /* fine grid texture for depth — same circuit-grid backdrop treatment as About */
+    .services-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size: 42px 42px;
+        -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 72%);
+        mask-image: radial-gradient(ellipse at center, black 10%, transparent 72%);
+        animation: gridMove 22s linear infinite;
+        z-index: 0;
+    }
+
+@keyframes heroDrift {
+    from {
+        transform: translate(0,0) scale(1);
+    }
+
+    to {
+        transform: translate(-2%, 2%) scale(1.05);
+    }
+}
+
+@keyframes gridMove {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 42px 42px;
+    }
+}
+
+.services-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 800;
+    letter-spacing: -.01em;
+    text-transform: capitalize;
+    font-size: clamp(2.1rem, 4.2vw, 3rem);
+    margin-bottom: 22px;
+    background: linear-gradient(100deg, var(--hero-a) 0%, var(--hero-b) 55%, var(--hero-c) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 34px rgba(var(--hero-a-rgb),.28));
+    animation: fadeUp .9s var(--ease) both;
+}
+
+/* ---------- Floating decorative shapes → glowing orbit nodes ----------
+   Same sizes, positions, and float animation as the About page hero;
+   recolored to the services accent palette (gold / terracotta / emerald / rose). */
+.services-hero .shape {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.9;
+    animation: heroShapeFloat 6s ease-in-out infinite;
+}
+
+    .services-hero .shape.circle {
+        width: 34px;
+        height: 34px;
+        border: 3px solid;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,.06), transparent 70%);
+    }
+
+        .services-hero .shape.circle.red {
+            border-color: var(--hero-d);
+            box-shadow: 0 0 18px rgba(var(--hero-d-rgb),.35);
+            top: 68%;
+            left: 14%;
+            animation-delay: 0s;
+        }
+
+        .services-hero .shape.circle.blue {
+            border-color: var(--hero-c);
+            box-shadow: 0 0 24px rgba(var(--hero-c-rgb),.4);
+            top: 58%;
+            right: 9%;
+            animation-delay: 1.1s;
+        }
+
+    .services-hero .shape.diamond {
+        width: 26px;
+        height: 26px;
+        border: 3px solid var(--hero-b);
+        box-shadow: 0 0 16px rgba(var(--hero-b-rgb),.4);
+        transform: rotate(45deg);
+        top: 70%;
+        left: 26%;
+        animation-delay: 0.6s;
+        --r: 45deg;
+    }
+
+    .services-hero .shape.triangle {
+        width: 0;
+        height: 0;
+        top: 14%;
+        right: 7%;
+        animation-delay: 1.6s;
+    }
+
+        .services-hero .shape.triangle::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -20px;
+            width: 40px;
+            height: 34px;
+            box-sizing: border-box;
+            border: 2px solid var(--hero-c);
+            filter: drop-shadow(0 0 10px rgba(var(--hero-c-rgb),.45));
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+    .services-hero .shape.cross {
+        top: 20%;
+        left: 46%;
+        color: var(--hero-d);
+        font-size: 1.6rem;
+        font-weight: bold;
+        text-shadow: 0 0 14px rgba(var(--hero-d-rgb),.5);
+        animation-delay: 0.3s;
+    }
+
+@keyframes heroShapeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(var(--r, 0deg));
+    }
+
+    50% {
+        transform: translateY(-16px) rotate(var(--r, 0deg));
+    }
+}
+
+.services-hero .breadcrumb {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 20px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.92rem;
+    border-radius: 50px;
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
+    animation: fadeUp .9s var(--ease) .1s both;
+}
+
+    .services-hero .breadcrumb:hover {
+        transform: translateY(-2px);
+        border-color: rgba(var(--hero-a-rgb),.55);
+        box-shadow: 0 14px 34px rgba(var(--hero-a-rgb),.18);
+    }
+
+    .services-hero .breadcrumb a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color .3s ease;
+    }
+
+        .services-hero .breadcrumb a:hover {
+            color: var(--hero-a);
+        }
+
+    .services-hero .breadcrumb .separator {
+        color: var(--text-muted);
+    }
+
+    .services-hero .breadcrumb .current {
+        font-weight: 700;
+        background: linear-gradient(90deg, var(--hero-a), var(--hero-b));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+
+/* ===========================
+   SECTION WRAPPER (cards)
+=========================== */
+
+.page-hero--services {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: clamp(3rem, 6vw, 5rem) 1.5rem clamp(5rem, 10vw, 8.5rem);
+    background: radial-gradient(circle at 12% 15%, rgba(var(--hero-a-rgb),.08), transparent 32%), radial-gradient(circle at 88% 85%, rgba(var(--hero-c-rgb),.08), transparent 34%), var(--bg-main-alt);
+}
+
+    .page-hero--services::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+        background-size: 42px 42px;
+        z-index: 0;
+    }
+
+.wrap {
+    max-width: 1240px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ===========================
+   SECTION HEAD
+=========================== */
+
+.section-head {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+    .section-head .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--hero-a);
+        border-radius: 50px;
+        background: rgba(var(--hero-a-rgb),.08);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--glass-border);
+        margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+        font-family: "Space Grotesk", sans-serif;
+        color: var(--text-white);
+        font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+        font-weight: 800;
+        margin-bottom: 14px;
+    }
+
+    .section-head p {
+        font-family: "Inter", sans-serif;
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+
+/* ===========================
+   GRID LAYOUT
+=========================== */
+
+.serv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 0;
+    margin: 54px 0 0;
+    list-style: none;
+}
+
+
+/* ===========================
+   SERVICE CARD — base
+=========================== */
+
+.serv-card {
+    --accent-a: var(--c1-a);
+    --accent-a-rgb: var(--c1-a-rgb);
+    --accent-b: var(--c1-b);
+    --accent-b-rgb: var(--c1-b-rgb);
+    position: relative;
+    padding: 2rem 1.9rem 2.2rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(150deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: var(--shadow);
+    color: var(--text-white);
+    overflow: hidden;
+    transform: translateZ(0);
+    transition: transform .5s var(--ease), border-color .45s ease, box-shadow .5s var(--ease), background .45s ease;
+    opacity: 0;
+    animation: fadeUp .85s var(--ease) forwards;
+}
+
+/* assign each card its own accent pair */
+.serv-grid li:nth-child(1) {
+    --accent-a: var(--c1-a);
+    --accent-a-rgb: var(--c1-a-rgb);
+    --accent-b: var(--c1-b);
+    --accent-b-rgb: var(--c1-b-rgb);
+    animation-delay: .05s;
+}
+
+.serv-grid li:nth-child(2) {
+    --accent-a: var(--c2-a);
+    --accent-a-rgb: var(--c2-a-rgb);
+    --accent-b: var(--c2-b);
+    --accent-b-rgb: var(--c2-b-rgb);
+    animation-delay: .13s;
+}
+
+.serv-grid li:nth-child(3) {
+    --accent-a: var(--c3-a);
+    --accent-a-rgb: var(--c3-a-rgb);
+    --accent-b: var(--c3-b);
+    --accent-b-rgb: var(--c3-b-rgb);
+    animation-delay: .21s;
+}
+
+.serv-grid li:nth-child(4) {
+    --accent-a: var(--c4-a);
+    --accent-a-rgb: var(--c4-a-rgb);
+    --accent-b: var(--c4-b);
+    --accent-b-rgb: var(--c4-b-rgb);
+    animation-delay: .29s;
+}
+
+.serv-grid li:nth-child(5) {
+    --accent-a: var(--c5-a);
+    --accent-a-rgb: var(--c5-a-rgb);
+    --accent-b: var(--c5-b);
+    --accent-b-rgb: var(--c5-b-rgb);
+    animation-delay: .37s;
+}
+
+.serv-grid li:nth-child(6) {
+    --accent-a: var(--c6-a);
+    --accent-a-rgb: var(--c6-a-rgb);
+    --accent-b: var(--c6-b);
+    --accent-b-rgb: var(--c6-b-rgb);
+    animation-delay: .45s;
+}
+
+/* if .serv-card is itself the <li> (as in the current markup), the rules
+   above with the combined selector already apply the right variables */
+
+/* glowing top border that fills on hover */
+.serv-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+    transition: width .55s var(--ease);
+    z-index: 3;
+}
+
+/* diagonal shine sweep */
+.serv-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.09) 50%, transparent 58%);
+    transform: translateX(-130%);
+    transition: transform .8s var(--ease);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.serv-card:hover::before {
+    width: 100%;
+}
+
+.serv-card:hover::after {
+    transform: translateX(130%);
+}
+
+.serv-card:hover {
+    transform: translateY(-14px) scale(1.025);
+    border-color: rgba(var(--accent-a-rgb),.55);
+    background: linear-gradient(150deg, rgba(255,255,255,.13), rgba(255,255,255,.03));
+    box-shadow: 0 30px 65px rgba(var(--accent-a-rgb),.25), 0 0 0 1px rgba(var(--accent-a-rgb),.18) inset;
+}
+
+.serv-card:active {
+    transform: translateY(-9px) scale(1.01);
+}
+
+
+/* ===========================
+   ICON
+=========================== */
+
+.ic {
+    position: relative;
+    z-index: 2;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, rgba(var(--accent-a-rgb),.28), rgba(var(--accent-b-rgb),.28));
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 0 0 rgba(var(--accent-a-rgb),0);
+    transition: transform .55s var(--ease), box-shadow .5s ease, background .5s ease;
+}
+
+.serv-card:hover .ic {
+    transform: rotate(-8deg) scale(1.14);
+    background: linear-gradient(135deg, rgba(var(--accent-a-rgb),.45), rgba(var(--accent-b-rgb),.45));
+    box-shadow: 0 0 32px rgba(var(--accent-a-rgb),.45);
+}
+
+
+/* ===========================
+   TEXT
+=========================== */
+
+.serv-card h3 {
+    position: relative;
+    z-index: 2;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.32rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: letter-spacing .45s ease;
+}
+
+.serv-card:hover h3 {
+    letter-spacing: .012em;
+}
+
+.serv-card p {
+    position: relative;
+    z-index: 2;
+    font-family: "Inter", sans-serif;
+    color: var(--text-light);
+    line-height: 1.75;
+    font-size: 0.95rem;
+    transition: color .45s ease;
+}
+
+.serv-card:hover p {
+    color: var(--text-white);
+}
+
+
+/* ===========================
+   ENTRANCE ANIMATION
+=========================== */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(44px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1080px) {
+    .serv-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 26px;
+    }
+}
+
+@media (max-width: 680px) {
+    .services-hero {
+        padding: 52px 16px 46px;
+    }
+
+        .services-hero h1 {
+            font-size: 2.1rem;
+        }
+
+        .services-hero .breadcrumb {
+            font-size: 0.85rem;
+            padding: 7px 14px;
+        }
+
+        .services-hero .shape.circle,
+        .services-hero .shape.diamond {
+            transform: scale(0.75);
+        }
+
+    .page-hero--services {
+        padding: 3.5rem 1.1rem 4.5rem;
+    }
+
+    .serv-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .serv-card {
+        padding: 1.6rem 1.4rem 1.9rem;
+    }
+
+    .section-head h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 681px) and (max-width: 1080px) {
+    .services-hero {
+        padding: 46px 24px 40px;
+    }
+}
+
+
+/* ===========================
+   MOTION SAFETY
+=========================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .serv-card,
+    .ic,
+    .serv-card::after,
+    .services-hero .shape,
+    .serv-card .glow,
+    .services-hero::before,
+    .services-hero::after,
+    .services-hero h1,
+    .services-hero .breadcrumb {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .serv-card {
+        opacity: 1;
+    }
+}

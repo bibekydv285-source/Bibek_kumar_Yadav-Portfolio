@@ -1,0 +1,124 @@
+/* base.css — resets, tokens, typography shared across the whole site */
+
+:root {
+    --bg: #0a0f1c;
+    --bg-soft: #0e1526;
+    --cyan: #25d5ea;
+    --cyan-dim: #1b8b9c;
+    --pink: #ff2d78;
+    --white: #f4f6fb;
+    --muted: #9aa5b8;
+    --line: rgba(255,255,255,0.08);
+    --radius: 10px;
+    --max: 1200px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Poppins','Segoe UI',system-ui,sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
+p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* fixed background glow used on every page */
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle at 18% 30%, rgba(37,213,234,0.16), transparent 34%), radial-gradient(circle at 85% 75%, rgba(255,45,120,0.08), transparent 32%), radial-gradient(circle at 60% 18%, rgba(139,92,246,0.08), transparent 28%);
+    opacity: 0.85;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+/* generic buttons reused across pages */
+.btn {
+    display: inline-block;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    transition: all .25s ease;
+}
+
+.btn-fill {
+    background: var(--cyan-dim);
+    color: #fff;
+}
+
+    .btn-fill:hover {
+        background: var(--cyan);
+        color: var(--bg);
+        transform: translateY(-2px);
+    }
+
+.btn-outline {
+    background: transparent;
+    border-color: rgba(37,213,234,0.5);
+    color: var(--white);
+}
+
+    .btn-outline:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+        transform: translateY(-2px);
+    }
+
+@media (max-width:980px) {
+    .wrap {
+        padding: 0 20px;
+    }
+}
