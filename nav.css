@@ -192,3 +192,32 @@
         display: block;
     }
 }
+
+/* ==========================================================
+   SMALL PHONES (≤600px) — tighten side padding so it lines
+   up with hero.css's mobile breakpoint (16px), and shrink
+   the logo so long names like "Bibek." never get clipped
+   ========================================================== */
+@media (max-width: 600px) {
+
+    .topbar {
+        padding: 14px 16px;
+        min-height: 64px;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+        letter-spacing: 0.4px;
+    }
+
+    .navtoggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.15rem;
+    }
+
+    .tabs ul {
+        padding: 8px 16px 16px;
+    }
+}

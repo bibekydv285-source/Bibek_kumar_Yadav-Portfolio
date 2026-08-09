@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: center;
     width: calc(var(--w) * 1.7);
+    max-width: 100%;
     height: calc(var(--w) * 1.7);
     margin: 0 auto;
     background: radial-gradient(circle at 28% 28%, rgba(37,213,234,0.14), transparent 22%), radial-gradient(circle at 70% 78%, rgba(139,92,246,0.12), transparent 28%);
@@ -426,7 +427,7 @@
    ===================================================== */
 @media (max-width:980px) {
     .hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding: 50px 20px;
         text-align: center;
     }
