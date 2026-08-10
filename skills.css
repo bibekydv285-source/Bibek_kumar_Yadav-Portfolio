@@ -540,6 +540,10 @@
     --card-accent: #b892ff;
 }
 
+.skill-card:has(.devicon-php-plain) {
+    --card-accent: #8b95ff;
+}
+
 .skills-hero .breadcrumb a:focus-visible,
 .skill-card:focus-within {
     outline: 3px solid var(--skills-cyan);
