@@ -164,20 +164,18 @@
 
 /* ================= PROJECT GRID ================= */
 
+/* Changed from 3 columns to 2 columns.
+   Why: with 5 project cards, a 3-column grid left one card
+   stranded alone on its own row. 2 columns lets cards pair up
+   evenly (row 1: Car Rental + Dairy, row 2: Library + Bibek
+   School), and gives each card more width to breathe since a
+   couple of your descriptions are longer now. */
 
 .proj-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
     gap: 28px;
-}
-
-
-
-@media(max-width:950px) {
-
-    .proj-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    align-items: stretch; /* makes every card in a row match the tallest card's height */
 }
 
 
@@ -189,6 +187,25 @@
 }
 
 
+/* If the last card is alone on its own row (odd number of
+   cards), center it instead of leaving it stuck to the left
+   with empty space beside it. */
+.proj-grid > .proj-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 560px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media(max-width:650px) {
+    .proj-grid > .proj-card:last-child:nth-child(odd) {
+        grid-column: auto;
+        max-width: none;
+        margin: 0;
+    }
+}
+
+
 
 /* ================= PROJECT CARD ================= */
 
@@ -196,6 +213,9 @@
 .proj-card {
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 28px;
     border-radius: 22px;
     background: linear-gradient( 145deg, rgba(255,255,255,.09), rgba(255,255,255,.03) );
@@ -352,7 +372,9 @@
 
 
 
-/* Links */
+/* Links — pinned to the bottom of the card via margin-top:auto,
+   so short cards and tall cards keep their buttons lined up on
+   the same baseline across a row. */
 
 
 .proj-links {
@@ -361,6 +383,8 @@
     gap: 20px;
     font-family: var(--mono);
     font-size: .8rem;
+    margin-top: auto;
+    padding-top: 8px;
 }
 
 
