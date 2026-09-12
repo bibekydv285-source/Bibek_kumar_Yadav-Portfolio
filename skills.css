@@ -429,6 +429,50 @@
         transform: rotate(-8deg);
     }
 
+/* Brand icon that has no icon-font glyph (e.g. Hostinger): rendered as a
+   masked shape so it inherits --card-accent through currentColor exactly
+   like the devicon/Font Awesome glyphs above, including on hover. */
+.skill-icon-brand {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 2.85rem;
+    height: 2.85rem;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+/* Official Hostinger mark (Simple Icons), served as a mask so it can be
+   tinted with currentColor instead of a fixed-color raster/SVG image. */
+.icon-hostinger {
+    -webkit-mask-image: url('https://api.iconify.design/simple-icons/hostinger.svg');
+    mask-image: url('https://api.iconify.design/simple-icons/hostinger.svg');
+}
+
+/* Fallback for browsers without CSS mask support: show the initial instead
+   of an empty box. */
+@supports not ((-webkit-mask-image: none) or (mask-image: none)) {
+    .skill-icon-brand {
+        background-color: transparent;
+    }
+
+    .icon-hostinger::after {
+        content: "H";
+        display: block;
+        font-family: var(--skills-display);
+        font-weight: 800;
+        font-size: 1.6rem;
+        line-height: 2.85rem;
+        text-align: center;
+        color: var(--card-accent);
+    }
+}
+
 .skill-name {
     position: relative;
     z-index: 1;
@@ -544,6 +588,16 @@
     --card-accent: #8b95ff;
 }
 
+/* Official WordPress blue (#21759B — WordPress brand guidelines) */
+.skill-card:has(.devicon-wordpress-plain) {
+    --card-accent: #21759B;
+}
+
+/* Official Hostinger lime (#CCFF00 — current Hostinger brand palette) */
+.skill-card:has(.icon-hostinger) {
+    --card-accent: #CCFF00;
+}
+
 .skills-hero .breadcrumb a:focus-visible,
 .skill-card:focus-within {
     outline: 3px solid var(--skills-cyan);
@@ -600,6 +654,11 @@
         width: 4.5rem;
         height: 4.5rem;
         font-size: 2.55rem;
+    }
+
+    .skill-icon-brand {
+        width: 2.35rem;
+        height: 2.35rem;
     }
 
     .skill-name {
