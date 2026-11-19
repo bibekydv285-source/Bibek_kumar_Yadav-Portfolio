@@ -934,3 +934,205 @@
         transition: none !important;
     }
 }
+
+/* ==========================================================
+   HERO BACKGROUND — aurora glows, grid, stars, light beam and
+   floating code chips. Sits behind the hero content.
+   ========================================================== */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* ---------- aurora blobs ---------- */
+.hb-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.55;
+    will-change: transform;
+}
+
+.hb-blob--1 {
+    width: 420px;
+    height: 420px;
+    left: -80px;
+    top: -60px;
+    background: radial-gradient(circle, rgba(37, 213, 234, 0.55), transparent 70%);
+    animation: hbDrift1 18s ease-in-out infinite alternate;
+}
+
+.hb-blob--2 {
+    width: 480px;
+    height: 480px;
+    right: -120px;
+    top: 10%;
+    background: radial-gradient(circle, rgba(124, 108, 240, 0.55), transparent 70%);
+    animation: hbDrift2 22s ease-in-out infinite alternate;
+}
+
+.hb-blob--3 {
+    width: 380px;
+    height: 380px;
+    left: 38%;
+    bottom: -160px;
+    background: radial-gradient(circle, rgba(255, 45, 120, 0.4), transparent 70%);
+    animation: hbDrift3 20s ease-in-out infinite alternate;
+}
+
+@keyframes hbDrift1 {
+    to { transform: translate(120px, 80px) scale(1.15); }
+}
+
+@keyframes hbDrift2 {
+    to { transform: translate(-140px, 60px) scale(0.9); }
+}
+
+@keyframes hbDrift3 {
+    to { transform: translate(-90px, -70px) scale(1.2); }
+}
+
+/* ---------- faint grid, fading out toward the edges ---------- */
+.hb-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 20%, transparent 80%);
+}
+
+/* ---------- twinkling stars (two offset layers) ---------- */
+.hb-stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1.5px 1.5px at 8% 22%, rgba(255, 255, 255, 0.9), transparent 60%),
+        radial-gradient(1px 1px at 18% 70%, rgba(255, 255, 255, 0.7), transparent 60%),
+        radial-gradient(1.5px 1.5px at 33% 12%, rgba(37, 213, 234, 0.9), transparent 60%),
+        radial-gradient(1px 1px at 52% 40%, rgba(255, 255, 255, 0.6), transparent 60%),
+        radial-gradient(1.5px 1.5px at 64% 86%, rgba(255, 255, 255, 0.8), transparent 60%),
+        radial-gradient(1px 1px at 77% 18%, rgba(255, 255, 255, 0.7), transparent 60%),
+        radial-gradient(1.5px 1.5px at 90% 62%, rgba(124, 108, 240, 0.9), transparent 60%),
+        radial-gradient(1px 1px at 96% 30%, rgba(255, 255, 255, 0.6), transparent 60%);
+    animation: hbTwinkle 4s ease-in-out infinite alternate;
+}
+
+.hb-stars--2 {
+    background-image:
+        radial-gradient(1px 1px at 12% 48%, rgba(255, 255, 255, 0.7), transparent 60%),
+        radial-gradient(1.5px 1.5px at 26% 92%, rgba(245, 166, 35, 0.9), transparent 60%),
+        radial-gradient(1px 1px at 44% 66%, rgba(255, 255, 255, 0.6), transparent 60%),
+        radial-gradient(1.5px 1.5px at 58% 8%, rgba(255, 255, 255, 0.85), transparent 60%),
+        radial-gradient(1px 1px at 71% 50%, rgba(255, 255, 255, 0.6), transparent 60%),
+        radial-gradient(1.5px 1.5px at 84% 90%, rgba(37, 213, 234, 0.9), transparent 60%),
+        radial-gradient(1px 1px at 93% 8%, rgba(255, 255, 255, 0.7), transparent 60%);
+    animation-delay: -2s;
+    animation-duration: 5s;
+}
+
+@keyframes hbTwinkle {
+    from { opacity: 0.35; }
+    to { opacity: 1; }
+}
+
+/* ---------- slow diagonal light beam ---------- */
+.hb-beam {
+    position: absolute;
+    top: -50%;
+    left: -30%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: rotate(18deg);
+    animation: hbBeam 11s ease-in-out infinite;
+}
+
+@keyframes hbBeam {
+    0%, 15% { left: -40%; }
+    60%, 100% { left: 120%; }
+}
+
+/* ---------- floating code chips ---------- */
+.hb-chip {
+    position: absolute;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-family: var(--mono, 'JetBrains Mono', monospace);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: hbFloat 7s ease-in-out infinite;
+}
+
+.hb-chip--1 { top: 9%; left: 6%; color: rgba(37, 213, 234, 0.75); border-color: rgba(37, 213, 234, 0.25); }
+.hb-chip--2 { top: 7%; left: 46%; color: rgba(167, 139, 250, 0.8); border-color: rgba(124, 108, 240, 0.3); animation-delay: -1.5s; }
+.hb-chip--3 { top: 14%; right: 5%; color: rgba(245, 166, 35, 0.8); border-color: rgba(245, 166, 35, 0.28); animation-delay: -3s; }
+.hb-chip--4 { bottom: 9%; left: 5%; color: rgba(167, 139, 250, 0.8); border-color: rgba(124, 108, 240, 0.3); animation-delay: -4.5s; }
+.hb-chip--5 { bottom: 6%; left: 47%; color: rgba(37, 213, 234, 0.75); border-color: rgba(37, 213, 234, 0.25); animation-delay: -2.2s; }
+.hb-chip--6 { bottom: 12%; right: 4%; color: rgba(255, 92, 141, 0.8); border-color: rgba(255, 45, 120, 0.28); animation-delay: -5.5s; }
+
+@keyframes hbFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* keep all three hero buttons on one row on desktop */
+@media (min-width: 981px) {
+    .hero .cta-row {
+        gap: 12px;
+    }
+
+        .hero .cta-row a {
+            padding: 14px 26px;
+        }
+}
+
+/* phones/tablets: fewer chips so nothing crowds the content */
+@media (max-width: 980px) {
+    .hb-chip--2,
+    .hb-chip--5 {
+        display: none;
+    }
+
+    .hb-blob {
+        filter: blur(50px);
+        opacity: 0.45;
+    }
+}
+
+@media (max-width: 560px) {
+    .hb-chip {
+        font-size: 0.68rem;
+        padding: 4px 9px;
+    }
+
+    .hb-chip--3,
+    .hb-chip--4 {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hb-blob,
+    .hb-stars,
+    .hb-beam,
+    .hb-chip {
+        animation: none;
+    }
+
+    .hb-beam {
+        display: none;
+    }
+}
