@@ -1307,3 +1307,39 @@
     .cf-card .cf-submit--wa:focus-visible {
         outline-color: rgba(37, 211, 102, 0.6);
     }
+
+/* Browser autofill (Chrome/Edge/Safari paint saved values on a light
+   blue-white box): keep the dark field and light text instead. */
+.cf-field input:-webkit-autofill,
+.cf-field input:-webkit-autofill:hover,
+.cf-field input:-webkit-autofill:focus,
+.cf-field textarea:-webkit-autofill {
+    -webkit-text-fill-color: var(--cf-ink);
+    caret-color: var(--cf-ink);
+    -webkit-box-shadow: 0 0 0 1000px #11162a inset;
+    box-shadow: 0 0 0 1000px #11162a inset;
+    border-color: rgba(37, 213, 234, 0.35);
+    transition: background-color 9999s ease-out 0s;
+}
+
+.cf-field input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #0d1224 inset, 0 0 0 4px rgba(37, 213, 234, 0.14);
+    box-shadow: 0 0 0 1000px #0d1224 inset, 0 0 0 4px rgba(37, 213, 234, 0.14);
+    border-color: var(--cf-cyan);
+}
+
+/* Firefox */
+.cf-field input:autofill {
+    background: #11162a;
+    color: var(--cf-ink);
+}
+
+/* autofilled values count as "filled", so the label stays floated */
+.cf-field input:-webkit-autofill + label,
+.cf-field input:autofill + label {
+    top: 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--cf-cyan);
+}
