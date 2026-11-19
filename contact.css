@@ -806,3 +806,525 @@
 .promo-card a:hover {
     text-decoration: underline;
 }
+/* ================================================================
+   CONTACT FORM v2 — card header, topic chips, floating labels,
+   WhatsApp send button. cf- prefix, used on Home and Contact.
+   ================================================================ */
+.cf-card {
+    --cf-ink: #f4f6fb;
+    --cf-dim: #9aa5b8;
+    --cf-line: rgba(255, 255, 255, 0.1);
+    --cf-cyan: #25d5ea;
+    --cf-purple: #8b7bff;
+    --cf-green: #25d366;
+
+    position: relative;
+    padding: 28px;
+    border-radius: 26px;
+    border: 1px solid transparent;
+    background:
+        radial-gradient(420px circle at 100% 0%, rgba(139, 123, 255, 0.16), transparent 60%) padding-box,
+        radial-gradient(380px circle at 0% 100%, rgba(37, 213, 234, 0.10), transparent 60%) padding-box,
+        linear-gradient(165deg, rgba(26, 30, 48, 0.97), rgba(16, 19, 33, 0.97)) padding-box,
+        linear-gradient(140deg, rgba(37, 213, 234, 0.55), rgba(139, 123, 255, 0.35) 40%, rgba(255, 255, 255, 0.06) 70%) border-box;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    color: var(--cf-dim);
+}
+
+/* ---------- Header ---------- */
+.cf-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--cf-line);
+}
+
+.cf-head-ic {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    color: #0b1020;
+    background: linear-gradient(135deg, var(--cf-cyan), var(--cf-purple));
+    box-shadow: 0 10px 26px rgba(37, 213, 234, 0.3);
+}
+
+.cf-head h3 {
+    margin: 2px 0 4px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cf-ink);
+}
+
+.cf-head p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+/* ---------- Topic chips ---------- */
+.cf-topics {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.cf-topics-label {
+    width: 100%;
+    margin-bottom: 2px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cf-dim);
+}
+
+.cf-topic {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--cf-line);
+    background: rgba(255, 255, 255, 0.04);
+    color: #cbd5e1;
+    font: inherit;
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+    .cf-topic:hover {
+        transform: translateY(-2px);
+        border-color: rgba(37, 213, 234, 0.5);
+        color: var(--cf-ink);
+    }
+
+    .cf-topic[aria-pressed="true"] {
+        color: #0b1020;
+        border-color: transparent;
+        background: linear-gradient(120deg, var(--cf-cyan), var(--cf-purple));
+        box-shadow: 0 6px 18px rgba(37, 213, 234, 0.3);
+    }
+
+    .cf-topic:focus-visible {
+        outline: 2px solid var(--cf-cyan);
+        outline-offset: 2px;
+    }
+
+/* ---------- Fields with icon + floating label ---------- */
+.cf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.cf-field {
+    position: relative;
+}
+
+.cf-field--full {
+    grid-column: 1 / -1;
+}
+
+.cf-field input,
+.cf-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px 16px 9px 48px;
+    border-radius: 14px;
+    border: 1px solid var(--cf-line);
+    background: rgba(8, 11, 22, 0.55);
+    color: var(--cf-ink);
+    font: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.cf-field textarea {
+    min-height: 140px;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    resize: vertical;
+    line-height: 1.55;
+}
+
+.cf-field label {
+    position: absolute;
+    left: 48px;
+    top: 17px;
+    font-size: 0.95rem;
+    color: var(--cf-dim);
+    pointer-events: none;
+    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+
+.cf-ic {
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    display: grid;
+    color: var(--cf-dim);
+    transition: color 0.2s ease;
+    pointer-events: none;
+}
+
+/* label floats up when focused or filled */
+.cf-field input:focus + label,
+.cf-field input:not(:placeholder-shown) + label,
+.cf-field textarea:focus + label,
+.cf-field textarea:not(:placeholder-shown) + label {
+    top: 7px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--cf-cyan);
+}
+
+.cf-field input:hover,
+.cf-field textarea:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cf-field input:focus,
+.cf-field textarea:focus {
+    border-color: var(--cf-cyan);
+    background: rgba(8, 11, 22, 0.75);
+    box-shadow: 0 0 0 4px rgba(37, 213, 234, 0.14);
+}
+
+.cf-field:focus-within .cf-ic {
+    color: var(--cf-cyan);
+}
+
+/* gentle red only after the visitor has typed something invalid */
+.cf-field input:not(:placeholder-shown):invalid {
+    border-color: rgba(255, 92, 120, 0.7);
+}
+
+.cf-count {
+    position: absolute;
+    right: 14px;
+    bottom: 9px;
+    font-size: 0.72rem;
+    color: var(--cf-dim);
+    pointer-events: none;
+}
+
+/* ---------- Actions ---------- */
+.cf-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    margin-top: 20px;
+}
+
+.cf-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(120deg, #25d366, #128c7e);
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+    .cf-submit svg:last-child {
+        transition: transform 0.2s ease;
+    }
+
+    .cf-submit:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.06);
+        box-shadow: 0 16px 36px rgba(37, 211, 102, 0.42);
+    }
+
+        .cf-submit:hover svg:last-child {
+            transform: translateX(4px);
+        }
+
+    .cf-submit:active {
+        transform: translateY(0);
+    }
+
+    .cf-submit:focus-visible {
+        outline: 3px solid rgba(37, 211, 102, 0.6);
+        outline-offset: 3px;
+    }
+
+.cf-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--cf-dim);
+}
+
+.cf-status {
+    margin: 14px 0 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+    .cf-status:empty {
+        display: none;
+    }
+
+    .cf-status.is-error {
+        color: #ff8a9b;
+    }
+
+    .cf-status.is-success {
+        color: #4ade80;
+    }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .cf-card {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .cf-head-ic {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+    }
+
+    .cf-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cf-actions,
+    .cf-submit {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cf-card *,
+    .cf-card *::before {
+        transition: none !important;
+    }
+}
+
+/* ================================================================
+   CONTACT FORM — email sending states
+   ================================================================ */
+
+/* honeypot: off-screen for people, still in the DOM for bots */
+.cf-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.cf-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* primary button now sends email: cyan -> purple */
+.cf-card .cf-submit {
+    position: relative;
+    background: linear-gradient(120deg, var(--cf-cyan), var(--cf-purple));
+    color: #0b1020;
+    box-shadow: 0 12px 28px rgba(37, 213, 234, 0.28);
+}
+
+    .cf-card .cf-submit:hover {
+        box-shadow: 0 16px 36px rgba(139, 123, 255, 0.4);
+    }
+
+    .cf-card .cf-submit:focus-visible {
+        outline-color: rgba(37, 213, 234, 0.6);
+    }
+
+    .cf-card .cf-submit:disabled {
+        cursor: progress;
+        transform: none;
+        filter: saturate(0.8);
+    }
+
+/* loading spinner replaces the send icon while the request runs */
+.cf-spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(11, 16, 32, 0.25);
+    border-top-color: #0b1020;
+    animation: cfSpin 0.7s linear infinite;
+}
+
+.cf-submit.is-loading .cf-spinner {
+    display: inline-block;
+}
+
+.cf-submit.is-loading svg {
+    display: none;
+}
+
+@keyframes cfSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* secondary: WhatsApp / "send another" */
+.cf-alt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(37, 211, 102, 0.55);
+    background: rgba(37, 211, 102, 0.08);
+    color: #4ade80;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+    .cf-alt:hover {
+        transform: translateY(-2px);
+        background: #25d366;
+        color: #06130b;
+    }
+
+    .cf-alt:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .cf-alt:focus-visible {
+        outline: 3px solid rgba(37, 211, 102, 0.5);
+        outline-offset: 3px;
+    }
+
+/* invalid field after a failed submit */
+.cf-field.is-invalid input,
+.cf-field.is-invalid textarea {
+    border-color: rgba(255, 92, 120, 0.85);
+    box-shadow: 0 0 0 4px rgba(255, 92, 120, 0.12);
+}
+
+.cf-field.is-invalid label,
+.cf-field.is-invalid .cf-ic {
+    color: #ff8a9b !important;
+}
+
+.cf-status a {
+    color: var(--cf-cyan);
+    text-decoration: underline;
+}
+
+/* ---------- success panel ---------- */
+.cf-success:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 36px 12px 16px;
+    animation: cfFadeUp 0.5s ease both;
+}
+
+.cf-success h4 {
+    margin: 18px 0 6px;
+    font-size: 1.5rem;
+    color: var(--cf-ink);
+}
+
+.cf-success p {
+    max-width: 380px;
+    margin: 0 0 22px;
+    line-height: 1.6;
+}
+
+.cf-check {
+    display: grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74, 222, 128, 0.18), rgba(74, 222, 128, 0.04) 70%);
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0.06), 0 0 40px rgba(74, 222, 128, 0.25);
+}
+
+.cf-check-circle {
+    stroke: #4ade80;
+    stroke-width: 3;
+    stroke-dasharray: 151;
+    stroke-dashoffset: 151;
+    animation: cfDraw 0.6s ease forwards;
+}
+
+.cf-check-tick {
+    stroke: #4ade80;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 36;
+    stroke-dashoffset: 36;
+    animation: cfDraw 0.4s 0.5s ease forwards;
+}
+
+@keyframes cfDraw {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes cfFadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+    .cf-buttons {
+        width: 100%;
+    }
+
+        .cf-buttons .cf-submit {
+            flex: 1 1 100%;
+        }
+
+        .cf-buttons .cf-alt {
+            flex: 1 1 100%;
+        }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cf-spinner {
+        animation-duration: 1.6s;
+    }
+
+    .cf-check-circle,
+    .cf-check-tick {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+
+    .cf-success:not([hidden]) {
+        animation: none;
+    }
+}

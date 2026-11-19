@@ -221,3 +221,26 @@
         padding: 8px 16px 16px;
     }
 }
+/* Keep every menu label (incl. "Experience & Education") and the CTA
+   on one line; let the gaps shrink on narrower desktops instead. */
+@media (min-width: 981px) {
+    .tabs ul {
+        gap: clamp(16px, 2.2vw, 34px);
+    }
+
+    .tabs a,
+    .topbar-cta {
+        white-space: nowrap;
+    }
+}
+
+@media (min-width: 981px) and (max-width: 1120px) {
+    .tabs a {
+        font-size: 0.9rem;
+    }
+
+    .topbar-cta {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}

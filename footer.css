@@ -1,719 +1,601 @@
 /* ==========================================================
-   FOOTER.CSS — MODERN MULTI-COLOR PREMIUM FOOTER (COMPACT)
-   ========================================================== */
-
-
-/* ==========================================================
-   MAIN FOOTER
+   FOOTER.CSS — CTA banner, five-column grid, bottom bar
+   All selectors are scoped to .site-footer / .ft-* so nothing
+   leaks into other sections of the page.
    ========================================================== */
 
 .site-footer {
+    --ft-bg: #070b18;
+    --ft-ink: #f4f6fb;
+    --ft-dim: #9aa5b8;
+    --ft-line: rgba(255, 255, 255, 0.08);
+    --ft-cyan: #25d5ea;
+    --ft-pink: #ff2d78;
+    --ft-gold: #f5a623;
+    --ft-green: #22c55e;
+
     position: relative;
     z-index: 2;
-
-    padding: 50px 0 20px;   /* was 85px 0 28px */
-
     overflow: hidden;
-
+    padding: 40px 0 0;
+    color: var(--ft-dim);
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
     background:
-        radial-gradient(
-            circle at 5% 15%,
-            rgba(0, 229, 255, 0.10),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 95% 10%,
-            rgba(255, 92, 141, 0.12),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(255, 170, 0, 0.10),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #070b18 0%,
-            #0c1428 45%,
-            #111827 100%
-        );
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+        radial-gradient(circle at 8% 20%, rgba(37, 213, 234, 0.10), transparent 32%),
+        radial-gradient(circle at 92% 8%, rgba(255, 45, 120, 0.12), transparent 34%),
+        radial-gradient(circle at 50% 100%, rgba(245, 166, 35, 0.08), transparent 40%),
+        linear-gradient(160deg, #070b18 0%, #0c1428 55%, #111827 100%);
+    border-top: 1px solid var(--ft-line);
 }
 
+    /* gradient seam along the top edge */
+    .site-footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--ft-cyan), var(--ft-pink), var(--ft-gold), transparent);
+        opacity: 0.85;
+    }
 
-/* ==========================================================
-   DECORATIVE BACKGROUND BLOBS
-   ========================================================== */
+    /* faint dot grid texture */
+    .site-footer::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 26px 26px;
+        mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+        -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+    }
 
-.site-footer::before,
-.site-footer::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(100px);
-    opacity: 0.7;
-}
+    .site-footer .wrap {
+        position: relative;
+        z-index: 1;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 32px;
+    }
 
-.site-footer::before {
-    width: 300px;   /* was 360px, slightly smaller so it doesn't force extra height */
-    height: 300px;
-    top: -150px;
-    right: -100px;
-    background: #ff4d88;
-    animation: footerFloatOne 10s ease-in-out infinite alternate;
-}
+    .site-footer a {
+        color: inherit;
+        text-decoration: none;
+    }
 
-.site-footer::after {
-    width: 320px;   /* was 380px */
-    height: 320px;
-    bottom: -180px;
-    left: -140px;
-    background: #00cfff;
-    animation: footerFloatTwo 12s ease-in-out infinite alternate;
-}
+        .site-footer a:focus-visible {
+            outline: 2px solid var(--ft-cyan);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
 
-@keyframes footerFloatOne {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(-45px, 35px) scale(1.15); }
-}
-
-@keyframes footerFloatTwo {
-    from { transform: translate(0, 0) scale(1); }
-    to   { transform: translate(55px, -30px) scale(1.1); }
-}
-
-
-/* ==========================================================
-   FOOTER GRID
-   ========================================================== */
-
-.footer-grid {
+/* ---------- Status pulse dot ---------- */
+.ft-pulse {
     position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 35px;   /* was 55px */
-}
-
-
-/* ==========================================================
-   BRAND SECTION
-   ========================================================== */
-
-.footer-brand {
-    position: relative;
-}
-
-.footer-brand .logo {
     display: inline-block;
-    margin-bottom: 12px;   /* was 16px */
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: 1px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ft-green);
+    flex: none;
+}
 
-    background: linear-gradient(90deg, #00d9ff, #4f8cff, #9b7bff);
+    .ft-pulse::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: var(--ft-green);
+        animation: ftPulse 2s ease-out infinite;
+    }
+
+@keyframes ftPulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(2.8); opacity: 0; }
+}
+
+/* ==========================================================
+   CTA BANNER
+   ========================================================== */
+.ft-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 28px;
+    flex-wrap: wrap;
+    padding: 18px 26px;
+    margin-bottom: 34px;
+    border-radius: 18px;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(135deg, rgba(18, 24, 44, 0.96), rgba(22, 16, 38, 0.96)) padding-box,
+        linear-gradient(120deg, var(--ft-cyan), var(--ft-pink), var(--ft-gold)) border-box;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.ft-cta-text {
+    max-width: 620px;
+}
+
+.ft-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ft-green);
+}
+
+.ft-cta h2 {
+    margin: 4px 0 0;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--ft-ink);
+}
+
+.ft-cta p {
+    margin: 0;
+    color: var(--ft-dim);
+}
+
+.ft-cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ft-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+    .ft-btn:hover {
+        transform: translateY(-2px);
+    }
+
+.site-footer .ft-btn--primary {
+    color: #fff;
+    background: linear-gradient(120deg, var(--ft-pink), #ff7a1a);
+    box-shadow: 0 10px 26px rgba(255, 45, 120, 0.3);
+}
+
+    .site-footer .ft-btn--primary:hover {
+        box-shadow: 0 14px 34px rgba(255, 45, 120, 0.45);
+    }
+
+    .site-footer .ft-btn--primary svg {
+        transition: transform 0.2s ease;
+    }
+
+    .site-footer .ft-btn--primary:hover svg {
+        transform: translateX(3px);
+    }
+
+.site-footer .ft-btn--ghost {
+    color: var(--ft-ink);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+    .site-footer .ft-btn--ghost:hover {
+        background: var(--ft-ink);
+        color: var(--ft-bg);
+    }
+
+/* ==========================================================
+   MAIN GRID
+   ========================================================== */
+.ft-grid {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr 1fr 1.35fr;
+    gap: 28px 48px;
+    padding-bottom: 26px;
+}
+
+/* ---------- Brand ---------- */
+.ft-logo {
+    display: inline-block;
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, var(--ft-cyan), #8b7bff);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
-
-    transition: transform 0.35s ease, filter 0.35s ease;
+    color: transparent !important;
 }
 
-.footer-brand .logo:hover {
-    transform: translateY(-4px);
-    filter: drop-shadow(0 10px 18px rgba(0, 217, 255, 0.25));
+    .ft-logo span {
+        color: var(--ft-pink);
+        -webkit-text-fill-color: var(--ft-pink);
+    }
+
+.ft-brand p {
+    margin: 8px 0 12px;
+    max-width: 340px;
+    line-height: 1.6;
+    font-size: 0.9rem;
 }
 
-.footer-brand p {
-    max-width: 360px;
-    margin: 0;
-    color: #9ca9bf;
-    font-size: 0.96rem;
-    line-height: 1.7;   /* was 1.8 */
-}
-
-
-/* ==========================================================
-   SOCIAL ICONS
-   ========================================================== */
-
-.social-row {
-    display: flex;
-    gap: 13px;
-    margin-top: 18px;   /* was 26px */
-}
-
-.social-row a {
-    position: relative;
-    width: 42px;   /* was 45px */
-    height: 42px;
-    display: flex;
+.ft-status {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 14px;
-    color: #dfe7f5;
-
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.035));
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    font-size: 1.05rem;
-
-    transition:
-        transform 0.35s cubic-bezier(.2, .8, .2, 1),
-        box-shadow 0.35s ease,
-        border-color 0.35s ease,
-        background 0.35s ease;
+    gap: 10px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ft-ink);
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
-.social-row a::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -120%;
-    width: 60%;
-    height: 200%;
-    transform: rotate(25deg);
-    background: rgba(255, 255, 255, 0.22);
-    transition: left 0.55s ease;
+.ft-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
 }
 
-.social-row a:hover::before {
-    left: 160%;
-}
+    .ft-social a {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        color: var(--ft-ink);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--ft-line);
+        transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-.social-row a:hover {
-    transform: translateY(-6px) scale(1.08);
-    border-color: rgba(255, 255, 255, 0.28);
-}
+        .ft-social a:hover {
+            transform: translateY(-3px);
+            border-color: transparent;
+        }
 
-.social-row a:nth-child(1):hover {
-    background: #181818;
-    color: #ffffff;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
-}
+        .ft-social a[aria-label="GitHub"]:hover { background: #2b3137; box-shadow: 0 8px 20px rgba(255, 255, 255, 0.12); }
+        .ft-social a[aria-label="LinkedIn"]:hover { background: #0a66c2; box-shadow: 0 8px 20px rgba(10, 102, 194, 0.45); }
+        .ft-social a[aria-label="Facebook"]:hover { background: #1877f2; box-shadow: 0 8px 20px rgba(24, 119, 242, 0.45); }
+        .ft-social a[aria-label="Instagram"]:hover { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); box-shadow: 0 8px 20px rgba(221, 42, 123, 0.45); }
+        .ft-social a[aria-label="WhatsApp"]:hover { background: #25d366; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45); }
 
-.social-row a:nth-child(2):hover {
-    background: #0a66c2;
-    color: white;
-    box-shadow: 0 12px 24px rgba(10, 102, 194, 0.40);
-}
-
-.social-row a:nth-child(3):hover {
-    background: #1877f2;
-    color: white;
-    box-shadow: 0 12px 24px rgba(24, 119, 242, 0.40);
-}
-
-.social-row a:nth-child(4):hover {
-    background: linear-gradient(135deg, #ffdc80, #e1306c, #833ab4);
-    color: white;
-    box-shadow: 0 12px 24px rgba(225, 48, 108, 0.40);
-}
-
-
-/* ==========================================================
-   FOOTER SECTION TITLES
-   ========================================================== */
-
-.footer-links h4,
-.footer-contact h4 {
+/* ---------- Link columns ---------- */
+.ft-col h3 {
     position: relative;
-    margin: 0 0 16px;   /* was 28px */
-    color: #f5f7ff;
-    font-size: 1.08rem;
+    margin: 4px 0 14px;
+    padding-bottom: 9px;
+    font-size: 0.98rem;
     font-weight: 700;
-    letter-spacing: 0.4px;
+    color: var(--ft-ink);
 }
 
-.footer-links h4::after {
-    content: "";
-    position: absolute;
-    width: 45px;
-    height: 3px;
-    left: 0;
-    bottom: -8px;   /* was -10px */
-    border-radius: 20px;
-    background: linear-gradient(90deg, #ff8a00, #ffc400);
-    transition: width 0.35s ease;
-}
+    .ft-col h3::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 34px;
+        height: 3px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--ft-gold), var(--ft-pink));
+    }
 
-.footer-contact h4::after {
-    content: "";
-    position: absolute;
-    width: 45px;
-    height: 3px;
-    left: 0;
-    bottom: -8px;   /* was -10px */
-    border-radius: 20px;
-    background: linear-gradient(90deg, #ff4d88, #ff7eb3);
-    transition: width 0.35s ease;
-}
-
-.footer-links:hover h4::after,
-.footer-contact:hover h4::after {
-    width: 75px;
-}
-
-
-/* ==========================================================
-   QUICK LINKS
-   ========================================================== */
-
-.footer-links ul {
+.ft-col ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 7px;
+}
+
+.ft-col li {
+    font-size: 0.9rem;
+}
+
+/* Explore: two short columns of links */
+.ft-col[aria-label="Footer"] ul {
+    grid-template-columns: repeat(2, max-content);
+    column-gap: 22px;
+}
+
+.ft-col ul:not(.ft-work) a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+    .ft-col ul:not(.ft-work) a:hover {
+        color: var(--ft-ink);
+        transform: translateX(4px);
+    }
+
+/* ---------- Latest work row ---------- */
+.ft-work-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 14px 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--ft-line);
+}
+
+.ft-work-head {
     display: flex;
     flex-direction: column;
-    gap: 10px;   /* was 14px */
+    gap: 2px;
 }
 
-.footer-links ul a {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    color: #9ba8bc;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
+    .ft-work-head h3 {
+        margin: 0;
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--ft-ink);
+    }
 
-.footer-links ul a::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    margin-right: 0;
-    border-radius: 50%;
-    background: #ff9800;
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.3s ease, transform 0.3s ease, margin-right 0.3s ease;
-}
-
-.footer-links ul a:hover {
-    color: #ffffff;
-    transform: translateX(7px);
-}
-
-.footer-links ul a:hover::before {
-    margin-right: 9px;
-    opacity: 1;
-    transform: scale(1);
-}
-
-
-/* ==========================================================
-   CONTACT SECTION
-   ========================================================== */
-
-.footer-contact p {
-    margin-bottom: 10px;   /* was 12px */
-    color: #aab4c7;
-    line-height: 1.6;   /* was 1.7 */
-    transition: color 0.3s ease;
-}
-
-.footer-contact p:hover {
-    color: #ffffff;
-}
-
-/* EMAIL TEXT LINK — smooth color fade instead of instant white flip */
-.footer-contact .email {
-    display: inline-block;
-    margin-bottom: 16px;   /* was 20px */
-    color: #ff9dbd;
-    text-decoration: none;
-    transition: color 0.35s ease, transform 0.35s ease;
-}
-
-.footer-contact .email:hover {
-    color: #ffd166;         /* warm gold instead of plain white — pairs better with the pink base */
-    transform: translateX(5px);
-}
-
-
-/* ==========================================================
-   EMAIL BUTTON — smooth fade hover (fixed abrupt jump)
-   ========================================================== */
-
-.email-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-
-    padding: 10px 22px;   /* was 12px 25px */
-    border-radius: 50px;
-
-    color: #ffca5f;
-    text-decoration: none;
-
-    background: rgba(255, 176, 32, 0.08);
-    border: 1px solid rgba(255, 176, 32, 0.45);
-
-    /* smooth, all-in-one fade instead of a pseudo-element wipe */
-    transition:
-        background-color 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease,
-        transform 0.35s cubic-bezier(.2, .8, .2, 1),
-        box-shadow 0.35s ease;
-}
-
-.email-btn span,
-.email-btn i {
-    position: relative;
-    z-index: 1;
-}
-
-.email-btn:hover {
-    background-color: #ffb347;   /* solid warm gold, fades in smoothly */
-    border-color: #ffb347;
-    color: #1a1200;
-
-    transform: translateY(-4px);   /* was -6px, subtler lift */
-
-    box-shadow: 0 12px 28px rgba(255, 152, 0, 0.35);
-}
-
-
-/* ==========================================================
-   FOOTER BOTTOM
-   ========================================================== */
-
-.footer-bottom {
-    position: relative;
-    z-index: 2;
-
-    margin-top: 30px;   /* was 60px */
-    padding-top: 18px;  /* was 25px */
-
-    text-align: center;
-    color: #7f8aa0;
-    font-size: 0.88rem;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.footer-bottom p {
+.ft-work {
+    list-style: none;
     margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
-.footer-bottom a {
-    color: #00d9ff;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.ft-work a {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 2px 8px;
+    padding: 9px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--ft-line);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
-.footer-bottom a:hover {
-    color: #ff9800;
+    .ft-work a:hover {
+        border-color: rgba(37, 213, 234, 0.45);
+        background: rgba(37, 213, 234, 0.06);
+        transform: translateY(-2px);
+    }
+
+.ft-work strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ft-ink);
 }
 
+    .ft-work strong::after {
+        content: " \2197";
+        color: var(--ft-cyan);
+        font-weight: 400;
+    }
+
+.ft-work span {
+    font-size: 0.78rem;
+    color: var(--ft-dim);
+}
+
+.ft-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ft-cyan) !important;
+}
+
+    .ft-more:hover svg {
+        transform: translateX(3px);
+    }
+
+    .ft-more svg {
+        transition: transform 0.2s ease;
+    }
+
+/* ---------- Contact ---------- */
+.ft-contact li,
+.ft-contact li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-wrap: anywhere;
+}
+
+.ft-ic {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    color: var(--ft-gold);
+    background: rgba(245, 166, 35, 0.1);
+    border: 1px solid rgba(245, 166, 35, 0.22);
+}
 
 /* ==========================================================
-   ACCESSIBILITY
+   BOTTOM BAR
    ========================================================== */
-
-.social-row a:focus-visible,
-.footer-links ul a:focus-visible,
-.footer-contact .email:focus-visible,
-.email-btn:focus-visible {
-    outline: 2px solid #00d9ff;
-    outline-offset: 4px;
+.ft-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    flex-wrap: wrap;
+    padding: 12px 0 14px;
+    border-top: 1px solid var(--ft-line);
+    font-size: 0.84rem;
 }
 
+    .ft-bottom p {
+        margin: 0;
+    }
+
+    .ft-bottom strong {
+        background: linear-gradient(120deg, var(--ft-cyan), #8b7bff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+.ft-made {
+    color: rgba(154, 165, 184, 0.75);
+}
+
+.ft-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    color: var(--ft-ink) !important;
+    border: 1px solid var(--ft-line);
+    background: rgba(255, 255, 255, 0.04);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+    .ft-top:hover {
+        transform: translateY(-2px);
+        border-color: rgba(37, 213, 234, 0.5);
+        background: rgba(37, 213, 234, 0.1);
+    }
 
 /* ==========================================================
-   TABLET & MOBILE
+   RESPONSIVE
    ========================================================== */
+@media (max-width: 1000px) {
+    .ft-grid {
+        grid-template-columns: 1.3fr 1fr 1fr;
+    }
 
-@media (max-width: 980px) {
-    .footer-grid {
+    .ft-contact {
+        grid-column: 1 / -1;
+    }
+
+        .ft-contact ul {
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        }
+
+    .ft-work-row {
         grid-template-columns: 1fr;
-        gap: 32px;   /* was 45px */
-        text-align: center;
     }
 
-    .footer-brand p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .social-row {
-        justify-content: center;
-    }
-
-    .footer-links ul {
+    .ft-work-head {
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
     }
-
-    .footer-links h4::after,
-    .footer-contact h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
 }
 
-
-/* ==========================================================
-   SMALL MOBILE
-   ========================================================== */
-
-@media (max-width: 480px) {
+@media (max-width: 760px) {
     .site-footer {
-        padding: 40px 20px 18px;   /* was 60px 20px 25px */
+        padding-top: 28px;
     }
 
-    .footer-grid {
-        gap: 28px;   /* was 40px */
+        .site-footer .wrap {
+            padding: 0 18px;
+        }
+
+    .ft-cta {
+        padding: 16px 18px;
+        margin-bottom: 26px;
     }
 
-    .footer-brand .logo {
-        font-size: 1.55rem;
+    .ft-cta-actions {
+        width: 100%;
+        flex-wrap: nowrap;
+        gap: 8px;
     }
 
-    .social-row {
-        gap: 10px;
+        .ft-cta-actions .ft-btn {
+            flex: 1;
+            min-width: 0;
+            padding: 10px 8px;
+            font-size: 0.85rem;
+        }
+
+    .ft-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 18px;
     }
 
-    .social-row a {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
+    .ft-brand {
+        grid-column: 1 / -1;
     }
 
-    .footer-bottom {
-        margin-top: 28px;   /* was 45px */
-        font-size: 0.8rem;
+        .ft-brand p {
+            max-width: none;
+        }
+
+    .ft-col[aria-label="Footer"] ul {
+        grid-template-columns: 1fr;
+    }
+
+    .ft-contact ul {
+        grid-template-columns: 1fr;
+    }
+
+    .ft-work {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .ft-made {
+        display: none;
+    }
+
+    .ft-bottom {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        font-size: 0.78rem;
+    }
+
+    .ft-cta .ft-eyebrow {
+        display: none;
+    }
+
+    .ft-cta h2 {
+        margin: 0;
+    }
+
+    .ft-top {
+        flex: none;
+        padding: 8px;
+    }
+
+        .ft-top span {
+            display: none;
+        }
+
+    .ft-brand .ft-social {
+        margin-top: 12px;
     }
 }
-
-
-/* ==========================================================
-   REDUCED MOTION
-   ========================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    .site-footer::before,
-    .site-footer::after {
+    .ft-pulse::after {
         animation: none;
     }
 
-    .social-row a,
-    .footer-links ul a,
-    .email-btn,
-    .footer-brand .logo {
-        transition: none;
-    }
-}
-
-/* ==========================================================
-   FOOTER COPYRIGHT — PREMIUM HOVER EFFECT
-   ========================================================== */
-
-.footer-bottom {
-    position: relative;
-    z-index: 2;
-
-    margin-top: 30px;
-    padding-top: 18px;
-
-    text-align: center;
-
-    color: #9aa7bd;
-    font-size: 0.88rem;
-    font-weight: 500;
-    letter-spacing: 0.25px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-
-    transition:
-        color 0.35s ease,
-        border-color 0.35s ease,
-        transform 0.35s ease,
-        text-shadow 0.35s ease;
-}
-
-/* Copyright text */
-.footer-bottom p {
-    margin: 0;
-}
-
-/* If the copyright is directly inside .footer-bottom */
-.footer-bottom {
-    cursor: default;
-}
-
-/* Premium hover */
-.footer-bottom:hover {
-    color: #e8f7ff;
-
-    border-top-color: rgba(0, 217, 255, 0.35);
-
-    transform: translateY(-2px);
-
-    text-shadow:
-        0 0 8px rgba(0, 217, 255, 0.25),
-        0 0 18px rgba(155, 123, 255, 0.15);
-}
-
-/* Copyright year */
-.footer-bottom #year {
-    color: #00d9ff;
-    font-weight: 700;
-
-    transition:
-        color 0.3s ease,
-        text-shadow 0.3s ease;
-}
-
-.footer-bottom:hover #year {
-    color: #7dd3fc;
-
-    text-shadow:
-        0 0 8px rgba(0, 217, 255, 0.65),
-        0 0 16px rgba(0, 217, 255, 0.35);
-}
-
-/* Your name */
-.footer-bottom .copyright-name {
-    color: #b8a7ff;
-    font-weight: 700;
-
-    transition:
-        color 0.3s ease,
-        text-shadow 0.3s ease;
-}
-
-.footer-bottom:hover .copyright-name {
-    color: #d8ccff;
-
-    text-shadow:
-        0 0 8px rgba(155, 123, 255, 0.55),
-        0 0 16px rgba(155, 123, 255, 0.25);
-}
-
-
-/* ==========================================================
-   COPYRIGHT LINK
-   ========================================================== */
-
-.footer-bottom a {
-    position: relative;
-
-    color: #00d9ff;
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition:
-        color 0.3s ease,
-        text-shadow 0.3s ease;
-}
-
-.footer-bottom a::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    bottom: -3px;
-
-    width: 0;
-    height: 2px;
-
-    border-radius: 10px;
-
-    background: linear-gradient(
-        90deg,
-        #00d9ff,
-        #7c7cff,
-        #c084fc
-    );
-
-    transition: width 0.35s ease;
-}
-
-.footer-bottom a:hover {
-    color: #ffffff;
-
-    text-shadow:
-        0 0 8px rgba(0, 217, 255, 0.6),
-        0 0 16px rgba(124, 124, 255, 0.35);
-}
-
-.footer-bottom a:hover::after {
-    width: 100%;
-}
-
-
-/* ==========================================================
-   COPYRIGHT TOP LINE — PREMIUM GLOW
-   ========================================================== */
-
-.footer-bottom::before {
-    content: "";
-
-    position: absolute;
-    top: -1px;
-    left: 50%;
-
-    width: 90px;
-    height: 2px;
-
-    transform: translateX(-50%);
-    border-radius: 20px;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #00d9ff,
-        #9b7bff,
-        #ff4d88,
-        transparent
-    );
-
-    opacity: 0.65;
-
-    transition:
-        width 0.4s ease,
-        opacity 0.4s ease,
-        box-shadow 0.4s ease;
-}
-
-.footer-bottom:hover::before {
-    width: 180px;
-    opacity: 1;
-
-    box-shadow:
-        0 0 8px rgba(0, 217, 255, 0.55),
-        0 0 18px rgba(155, 123, 255, 0.3);
-}
-
-
-/* ==========================================================
-   MOBILE
-   ========================================================== */
-
-@media (max-width: 480px) {
-
-    .footer-bottom {
-        margin-top: 28px;
-        padding-top: 18px;
-
-        font-size: 0.8rem;
-        line-height: 1.7;
-    }
-
-    .footer-bottom:hover {
-        transform: none;
-    }
-
-    .footer-bottom:hover::before {
-        width: 120px;
+    .site-footer *,
+    .site-footer *::before,
+    .site-footer *::after {
+        transition: none !important;
     }
 }

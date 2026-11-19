@@ -429,3 +429,85 @@
         padding: 46px 24px 40px;
     }
 }
+
+/* ---------- Experience + Education group headings ---------- */
+.edu-group-title {
+    width: min(100%, 820px);
+    margin: 0 auto 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: "Space Grotesk", var(--font-body, sans-serif);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    color: #fff;
+}
+
+    .edu-group-title i {
+        display: grid;
+        place-items: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 0.7rem;
+        font-size: 1rem;
+        color: #120a08;
+        background: linear-gradient(135deg, #ffb703, #ff7a1a);
+    }
+
+.edu-timeline + .edu-group-title {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.edu-provider a {
+    color: inherit;
+    text-decoration: none;
+}
+
+    .edu-provider a:hover {
+        text-decoration: underline;
+    }
+
+.edu-client-sites {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+    margin: 1rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.9rem;
+}
+
+    .edu-client-sites span {
+        color: var(--text-light);
+        font-weight: 600;
+    }
+
+    .edu-client-sites a {
+        color: var(--primary);
+        text-decoration: none;
+        overflow-wrap: anywhere;
+    }
+
+        .edu-client-sites a::after {
+            content: " \2197";
+        }
+
+        .edu-client-sites a:hover {
+            text-decoration: underline;
+        }
+
+.edu-resume {
+    width: min(100%, 820px);
+    margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+}
+
+/* restore bullet markers (base.css resets ul list-style) */
+.edu-card .edu-points {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0.9rem 0 1.1rem;
+}
+
+    .edu-card .edu-points li + li {
+        margin-top: 0.35rem;
+    }
