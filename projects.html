@@ -38,6 +38,7 @@
     <link href="site.css" rel="stylesheet" />
     <link href="skills.css" rel="stylesheet" />
     <link href="splash.css" rel="stylesheet" />
+    <link href="sections.css" rel="stylesheet" />
 </head>
 <body>
     <div class="bg-glow"></div>
@@ -86,6 +87,18 @@
             <div class="wrap">
                 <div class="section-head">
                     <span class="eyebrow">what i've built</span>
+                </div>
+
+                <div class="px-stats" aria-label="Project numbers"><div class="px-stat"><strong>9</strong><span>Projects built</span></div><div class="px-stat"><strong>5</strong><span>Client websites</span></div><div class="px-stat"><strong>4</strong><span>Personal projects</span></div><div class="px-stat"><strong>19</strong><span>Technologies</span></div></div>
+
+                <div class="px-filters" role="group" aria-label="Filter projects by technology">
+                    <span class="px-filters-label">Filter by tech</span>
+                    <button type="button" class="px-filter" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" class="px-filter" data-filter="wordpress" aria-pressed="false">WordPress</button>
+                    <button type="button" class="px-filter" data-filter="aspnet" aria-pressed="false">ASP.NET Core</button>
+                    <button type="button" class="px-filter" data-filter="javascript" aria-pressed="false">JavaScript</button>
+                    <button type="button" class="px-filter" data-filter="azure" aria-pressed="false">Azure</button>
+                    <span class="px-filter-count" id="px-filter-count" aria-live="polite"></span>
                 </div>
 
                 <div class="proj-group proj-group--client">
@@ -457,6 +470,44 @@
 
     <script src="nav-active.js"></script>
     <script src="javascript.js"></script>
+    <script>
+        // Filter project cards by technology (reads each card's tags and text)
+        (function () {
+            var buttons = document.querySelectorAll('.px-filter');
+            var cards = document.querySelectorAll('.proj-group .proj-card');
+            var countEl = document.getElementById('px-filter-count');
+            if (!buttons.length || !cards.length) return;
+            var rules = {
+                wordpress: /wordpress/,
+                aspnet: /asp\.net/,
+                javascript: /\bjs\b|javascript/,
+                azure: /azure/
+            };
+            function apply(key) {
+                var shown = 0;
+                cards.forEach(function (card) {
+                    var placeholder = /next project/i.test(card.querySelector('h3').textContent);
+                    var text = (card.querySelector('.proj-tags') || card).textContent + ' ' +
+                               (card.querySelector('p') || card).textContent;
+                    var match = key === 'all' || (!placeholder && rules[key].test(text.toLowerCase()));
+                    card.hidden = !match;
+                    if (match && !placeholder) shown++;
+                });
+                document.querySelectorAll('.proj-group').forEach(function (g) {
+                    g.hidden = !g.querySelector('.proj-card:not([hidden])');
+                });
+                countEl.textContent = shown + (shown === 1 ? ' project' : ' projects');
+            }
+            buttons.forEach(function (b) {
+                b.addEventListener('click', function () {
+                    buttons.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+                    b.setAttribute('aria-pressed', 'true');
+                    apply(b.dataset.filter);
+                });
+            });
+            apply('all');
+        })();
+    </script>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
