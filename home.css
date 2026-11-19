@@ -1136,3 +1136,170 @@
         display: none;
     }
 }
+
+/* ==========================================================
+   HERO STATS — icon + gradient count-up number + caption
+   ========================================================== */
+.hm-stats {
+    --hs-ink: #f4f6fb;
+    --hs-dim: #9aa5b8;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: var(--max, 1200px);
+    margin: 22px auto 80px;
+    padding: 10px;
+    border-radius: 28px;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(160deg, rgba(22, 24, 37, 0.92), rgba(14, 15, 24, 0.92)) padding-box,
+        linear-gradient(110deg, rgba(37, 213, 234, 0.45), rgba(124, 108, 240, 0.35), rgba(255, 45, 120, 0.35), rgba(245, 166, 35, 0.45)) border-box;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+}
+
+.hm-stat {
+    --c: #25d5ea;
+    --c2: #7c6cf0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 22px 24px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hm-stat--purple { --c: #8b7bff; --c2: #ff2d78; }
+.hm-stat--pink { --c: #ff2d78; --c2: #f5a623; }
+.hm-stat--gold { --c: #f5a623; --c2: #43d9a3; }
+
+    /* glowing divider between stats */
+    .hm-stat + .hm-stat::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 22%;
+        bottom: 22%;
+        width: 1px;
+        background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+    }
+
+    /* coloured accent line that grows on hover */
+    .hm-stat::after {
+        content: "";
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        bottom: 8px;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--c), var(--c2));
+        transform: scaleX(0.25);
+        transform-origin: left;
+        opacity: 0.7;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .hm-stat:hover {
+        background: radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%);
+        transform: translateY(-3px);
+    }
+
+        .hm-stat:hover::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+.hm-stat-ic {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c) 32%, transparent);
+    box-shadow: 0 0 24px color-mix(in srgb, var(--c) 18%, transparent);
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.hm-stat:hover .hm-stat-ic {
+    transform: rotate(-8deg) scale(1.06);
+    color: #0c0d15;
+    background: linear-gradient(135deg, var(--c), var(--c2));
+}
+
+.hm-stat-body {
+    min-width: 0;
+}
+
+.hm-stat-num {
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    background: linear-gradient(120deg, #ffffff 10%, var(--c) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hm-stat-label {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--hs-ink);
+}
+
+.hm-stat-sub {
+    margin-top: 2px;
+    font-size: 0.78rem;
+    color: var(--hs-dim);
+}
+
+@media (max-width: 1100px) {
+    .hm-stat {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 760px) {
+    .hm-stats {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 18px 16px 56px;
+    }
+
+        .hm-stat:nth-child(3)::before {
+            display: none;
+        }
+
+        .hm-stat:nth-child(n+3) {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 0 0 20px 20px;
+        }
+}
+
+@media (max-width: 400px) {
+    .hm-stat {
+        padding: 18px 14px 20px;
+    }
+
+    .hm-stat-ic {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hm-stat,
+    .hm-stat::after,
+    .hm-stat-ic {
+        transition: none;
+    }
+}

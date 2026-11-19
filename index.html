@@ -172,11 +172,39 @@
                 </div>
             </div>
         </section>
-        <div class="stats wrap">
-            <div class="stat"><div class="num">5</div><div class="label">Live client websites</div></div>
-            <div class="stat"><div class="num">9+</div><div class="label">Projects completed</div></div>
-            <div class="stat"><div class="num">15+</div><div class="label">Technologies used</div></div>
-            <div class="stat"><div class="num">100%</div><div class="label">Commitment to quality</div></div>
+        <div class="hm-stats wrap" aria-label="Quick numbers">
+            <div class="hm-stat hm-stat--cyan">
+                <span class="hm-stat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                <div class="hm-stat-body">
+                    <div class="hm-stat-num"><span class="hm-count" data-count="5">5</span></div>
+                    <div class="hm-stat-label">Live client websites</div>
+                    <div class="hm-stat-sub">Built at Shiva Tatwa Digital</div>
+                </div>
+            </div>
+            <div class="hm-stat hm-stat--purple">
+                <span class="hm-stat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 10 5-10 5L2 7Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+                <div class="hm-stat-body">
+                    <div class="hm-stat-num"><span class="hm-count" data-count="9">9</span>+</div>
+                    <div class="hm-stat-label">Projects completed</div>
+                    <div class="hm-stat-sub">Client and personal work</div>
+                </div>
+            </div>
+            <div class="hm-stat hm-stat--pink">
+                <span class="hm-stat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></span>
+                <div class="hm-stat-body">
+                    <div class="hm-stat-num"><span class="hm-count" data-count="19">19</span></div>
+                    <div class="hm-stat-label">Technologies used</div>
+                    <div class="hm-stat-sub">From C# to WordPress</div>
+                </div>
+            </div>
+            <div class="hm-stat hm-stat--gold">
+                <span class="hm-stat-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/></svg></span>
+                <div class="hm-stat-body">
+                    <div class="hm-stat-num"><span class="hm-count" data-count="100">100</span>%</div>
+                    <div class="hm-stat-label">Commitment to quality</div>
+                    <div class="hm-stat-sub">On every single project</div>
+                </div>
+            </div>
         </div>
 
         <!-- ============ WHAT I DO ============ -->
@@ -762,6 +790,30 @@
     <script src="javascript.js"></script>
     <script src="splash.js"></script>
     <script src="contact-form.js"></script>
+    <script>
+        // Count the hero stats up from 0 the first time they scroll into view
+        (function () {
+            var nums = document.querySelectorAll('.hm-count');
+            if (!nums.length || !('IntersectionObserver' in window) ||
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            function run(el) {
+                var target = +el.dataset.count, start = null, dur = 1400;
+                function step(t) {
+                    if (!start) start = t;
+                    var p = Math.min((t - start) / dur, 1);
+                    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+                    if (p < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.6 });
+            nums.forEach(function (el) { el.textContent = '0'; io.observe(el); });
+        })();
+    </script>
 
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
