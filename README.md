@@ -20,7 +20,7 @@ This repository holds the source code of my portfolio: who I am, my work experie
 - **About page:** quick stats, at-a-glance facts, languages with flags, a journey timeline and soft skills
 - **Experience & Education:** work and education timelines that match my CV
 - **Projects:** grouped into **Client Projects** (Shiva Tatwa Digital) and **Personal Projects**, each with a live-site screenshot preview
-- **Working contact form:** sends messages straight to my email (no backend), with WhatsApp as an alternative, topic chips, floating labels, a character counter and a success screen
+- **WhatsApp contact form:** opens WhatsApp with the visitor's message ready to send (no backend), with topic chips, floating labels, a character counter and validation
 - **Splash screen, animations and hover effects**, with reduced-motion support for accessibility
 - **SEO:** meta and Open Graph tags, JSON-LD structured data, `sitemap.xml` and `robots.txt`
 - **Free hosting** on Cloudflare Pages with a custom `.com.np` domain and HTTPS
@@ -33,7 +33,7 @@ This repository holds the source code of my portfolio: who I am, my work experie
 | Styling | CSS3, custom (no CSS framework), one stylesheet per section |
 | Interactivity | Vanilla JavaScript (ES6+) |
 | Icons & fonts | [Devicon](https://devicon.dev), [Font Awesome](https://fontawesome.com), [flag-icons](https://flagicons.lipis.dev), Google Fonts (Poppins) |
-| Contact form | [FormSubmit](https://formsubmit.co) (free, no account or server) + WhatsApp `wa.me` link |
+| Contact form | WhatsApp click-to-chat (`wa.me`) link, no server needed |
 | Analytics | Cloudflare Web Analytics |
 | Hosting | Cloudflare Pages (free tier) |
 | Domain | `bibek-yadav.com.np` (free `.com.np` domain for Nepali citizens) |
@@ -61,7 +61,7 @@ Bibek_kumar_Yadav-Portfolio/
 ├── services.css, contact.css     # Services page and contact form
 ├── splash.css                    # Splash / preloader screen
 │
-├── contact-form.js               # Contact form: email (FormSubmit) + WhatsApp
+├── contact-form.js               # Contact form → WhatsApp message
 ├── splash.js                     # Splash screen logic
 │
 ├── images/projects/              # Live-site screenshots (WebP) for project cards
@@ -91,24 +91,17 @@ No build tools needed. It's plain HTML, CSS and JavaScript.
      ```
      then open `http://localhost:5500`
 
-   Opening `index.html` directly also works, but the contact form needs to run from a server (`http://`), not `file://`.
+   Opening `index.html` directly also works.
 
-## 📧 Contact Form (FormSubmit, No Backend)
+## 💬 Contact Form (WhatsApp, No Backend)
 
 The form in `index.html` and `contact.html` is handled by `contact-form.js`:
 
-- **Send Message** posts the form as JSON to `https://formsubmit.co/ajax/bibekydv51@gmail.com`. FormSubmit forwards it to my inbox as a table, and **Reply** goes straight to the visitor's email.
-- **WhatsApp** opens `wa.me` with the same message already filled in.
-- **Spam protection:** a hidden honeypot field drops messages from bots.
-- If sending fails, the visitor is offered a `mailto:` link with their message pre-filled.
+1. The visitor fills in their name, email, optional phone and subject (or picks a topic chip), and their message.
+2. The script checks the required fields and the email format.
+3. **Send via WhatsApp** opens `https://wa.me/<number>?text=...` with everything neatly formatted, so the visitor only has to press **Send** in WhatsApp (on their phone or WhatsApp Web).
 
-**One-time setup:**
-
-1. Deploy the site and send a test message from the live domain.
-2. Open the inbox of the receiving email (check Spam too) and click **Activate Form** in the FormSubmit email.
-3. Every message after that is delivered to your inbox.
-
-To send to a different address, change `EMAIL_TO` at the top of `contact-form.js`. The activation email also gives you a random alias you can use there instead, so your email address isn't in the code.
+Nothing is stored or sent to any server. To change the receiving number, edit `WHATSAPP_NUMBER` at the top of `contact-form.js` (international format, no `+` or `00`).
 
 ## ☁️ Deployment — Cloudflare Pages (Free)
 
@@ -133,7 +126,7 @@ The live site redeploys automatically on every push to `main`.
 ## 🗺️ Roadmap
 
 - [x] Resume and CV downloads
-- [x] Working contact form that emails me
+- [x] Working contact form (sends to WhatsApp)
 - [x] Live-site previews for projects
 - [x] Cloudflare Web Analytics
 - [ ] Dark / light mode toggle

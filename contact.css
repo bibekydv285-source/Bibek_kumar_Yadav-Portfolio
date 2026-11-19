@@ -1128,22 +1128,13 @@
    CONTACT FORM — email sending states
    ================================================================ */
 
-/* honeypot: off-screen for people, still in the DOM for bots */
-.cf-hp {
-    position: absolute !important;
-    left: -9999px !important;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-}
-
 .cf-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-/* primary button now sends email: cyan -> purple */
+/* primary button: cyan -> purple (WhatsApp variant below) */
 .cf-card .cf-submit {
     position: relative;
     background: linear-gradient(120deg, var(--cf-cyan), var(--cf-purple));
@@ -1164,29 +1155,6 @@
         transform: none;
         filter: saturate(0.8);
     }
-
-/* loading spinner replaces the send icon while the request runs */
-.cf-spinner {
-    display: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2.5px solid rgba(11, 16, 32, 0.25);
-    border-top-color: #0b1020;
-    animation: cfSpin 0.7s linear infinite;
-}
-
-.cf-submit.is-loading .cf-spinner {
-    display: inline-block;
-}
-
-.cf-submit.is-loading svg {
-    display: none;
-}
-
-@keyframes cfSpin {
-    to { transform: rotate(360deg); }
-}
 
 /* secondary: WhatsApp / "send another" */
 .cf-alt {
@@ -1314,10 +1282,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cf-spinner {
-        animation-duration: 1.6s;
-    }
-
     .cf-check-circle,
     .cf-check-tick {
         animation: none;
@@ -1328,3 +1292,18 @@
         animation: none;
     }
 }
+
+/* WhatsApp-only form: green send button */
+.cf-card .cf-submit--wa {
+    color: #fff;
+    background: linear-gradient(120deg, #25d366, #128c7e);
+    box-shadow: 0 12px 28px rgba(37, 211, 102, 0.3);
+}
+
+    .cf-card .cf-submit--wa:hover {
+        box-shadow: 0 16px 36px rgba(37, 211, 102, 0.45);
+    }
+
+    .cf-card .cf-submit--wa:focus-visible {
+        outline-color: rgba(37, 211, 102, 0.6);
+    }
