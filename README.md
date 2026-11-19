@@ -22,7 +22,8 @@ This repository holds the source code of my portfolio: who I am, my work experie
 - **Projects:** grouped into **Client Projects** (Shiva Tatwa Digital) and **Personal Projects**, each with a live-site screenshot preview
 - **WhatsApp contact form:** opens WhatsApp with the visitor's message ready to send (no backend), with topic chips, floating labels, a character counter and validation
 - **Splash screen, animations and hover effects**, with reduced-motion support for accessibility
-- **SEO:** meta and Open Graph tags, JSON-LD structured data, `sitemap.xml` and `robots.txt`
+- **SEO:** unique titles and descriptions, canonical clean URLs, Open Graph/Twitter cards with a custom share image, JSON-LD (Person, breadcrumbs, projects, services, FAQ), image sitemap, custom 404 page
+- **Performance:** optimised WebP images, only the stylesheets each page needs, non-blocking icon fonts, preconnect hints
 - **Free hosting** on Cloudflare Pages with a custom `.com.np` domain and HTTPS
 
 ## 🛠️ Tech Stack
@@ -60,16 +61,22 @@ Bibek_kumar_Yadav-Portfolio/
 ├── skills.css, projects.css      # Skills and Projects pages
 ├── services.css, contact.css     # Services page and contact form
 ├── splash.css                    # Splash / preloader screen
+├── sections.css                  # Extra sections on Skills, Projects, Services
 │
 ├── contact-form.js               # Contact form → WhatsApp message
 ├── splash.js                     # Splash screen logic
 │
 ├── images/projects/              # Live-site screenshots (WebP) for project cards
+├── images/og-cover.jpg           # 1200x630 social share card
+├── images/bibek-*.webp           # Optimised profile photos
 ├── Bibek_Kumar_Yadav_Resume.pdf  # One-page resume
 ├── Bibek_Kumar_Yadav_CV.pdf      # Full two-page CV
 ├── *.jpeg, profile.jpg           # Profile photos
 ├── favicon*.png, favicon.ico     # Favicons and apple-touch-icon
-├── sitemap.xml, robots.txt       # SEO
+├── sitemap.xml, robots.txt       # SEO (clean URLs + image sitemap)
+├── 404.html                      # Custom "page not found" page
+├── site.webmanifest              # App name, icons and theme colour
+├── _headers                      # Cloudflare security + cache headers
 └── README.md
 ```
 

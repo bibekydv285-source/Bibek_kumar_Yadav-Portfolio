@@ -853,7 +853,8 @@
     box-shadow: 0 10px 26px rgba(37, 213, 234, 0.3);
 }
 
-.cf-head h3 {
+.cf-head h3,
+.cf-head .cf-title {
     margin: 2px 0 4px;
     font-size: 1.3rem;
     font-weight: 700;
@@ -1218,7 +1219,8 @@
     animation: cfFadeUp 0.5s ease both;
 }
 
-.cf-success h4 {
+.cf-success h4,
+.cf-success .cf-success-title {
     margin: 18px 0 6px;
     font-size: 1.5rem;
     color: var(--cf-ink);
