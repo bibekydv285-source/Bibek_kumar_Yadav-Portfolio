@@ -1411,7 +1411,8 @@
     100% { transform: scale(2.8); opacity: 0; }
 }
 
-#contact .cs-head h2 {
+#contact .cs-head h2,
+#contact .cs-head .cs-title {
     margin: 20px 0 16px;
     font-size: clamp(2.2rem, 5vw, 4rem);
     font-weight: 800;

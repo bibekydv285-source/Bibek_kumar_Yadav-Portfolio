@@ -125,14 +125,16 @@
    TEXT
    ========================================================== */
 
-.splash h1 {
+.splash h1,
+.splash .splash-name {
     margin: 0 0 10px;
     color: #ffffff;
     font-size: 2rem;
     font-weight: 700;
 }
 
-    .splash h1 em {
+    .splash h1 em,
+    .splash .splash-name em {
         color: #38bdf8;
         font-style: normal;
     }
