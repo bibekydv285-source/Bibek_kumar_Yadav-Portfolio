@@ -186,7 +186,7 @@
 
             <div class="topbar-actions">
                 <a class="topbar-cta" href="contact.html">Get in Touch</a>
-                <button class="navtoggle" onclick="document.getElementById('tabs').classList.toggle('open')" aria-label="Toggle menu">&#9776;</button>
+                <button class="navtoggle" type="button" aria-label="Open menu" aria-controls="tabs" aria-expanded="false">&#9776;</button>
             </div>
         </div>
     </header>
@@ -914,6 +914,7 @@
                 window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             function run(el) {
                 var target = +el.dataset.count, start = null, dur = 1400;
+                el.textContent = '0';
                 function step(t) {
                     if (!start) start = t;
                     var p = Math.min((t - start) / dur, 1);
@@ -927,11 +928,12 @@
                     if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
                 });
             }, { threshold: 0.6 });
-            nums.forEach(function (el) { el.textContent = '0'; io.observe(el); });
+            nums.forEach(function (el) { io.observe(el); }); // real numbers stay in the page until the count starts
         })();
     </script>
 
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
+    <script src="nav.js" defer></script>
 </body>
 </html>

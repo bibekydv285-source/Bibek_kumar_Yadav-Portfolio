@@ -1536,3 +1536,18 @@
         animation: none;
     }
 }
+
+/* iOS Safari zooms the page when a field's text is under 16px — prevent that on phones */
+@media (max-width: 640px) {
+    .cf-field input,
+    .cf-field textarea {
+        font-size: 16px;
+    }
+}
+
+/* comfortable touch targets on touchscreens */
+@media (pointer: coarse) {
+    .cf-topic {
+        min-height: 40px;
+    }
+}

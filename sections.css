@@ -933,3 +933,10 @@
         transition: none !important;
     }
 }
+
+/* comfortable touch targets on touchscreens */
+@media (pointer: coarse) {
+    .px-filter {
+        min-height: 44px;
+    }
+}

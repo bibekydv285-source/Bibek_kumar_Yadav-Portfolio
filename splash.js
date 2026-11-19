@@ -67,6 +67,10 @@ document.addEventListener("click", function (e) {
             }, 750);
         }
 
+        // a timer (not requestAnimationFrame) so progress keeps moving even when
+        // a phone throttles animation frames (battery saver, app switching)
+        var timer = setInterval(function () { tick(performance.now()); }, 30);
+
         function tick(now) {
             var t = Math.min(1, (now - start) / DURATION);
             var eased = 1 - Math.pow(1 - t, 2); // fast start, gentle finish
@@ -85,14 +89,12 @@ document.addEventListener("click", function (e) {
                 }
             }
 
-            if (t < 1) {
-                requestAnimationFrame(tick);
-            } else {
+            if (t >= 1 && !splash.classList.contains("is-ready")) {
+                clearInterval(timer);
                 splash.classList.add("is-ready");
                 setTimeout(finish, HOLD);
             }
         }
-        requestAnimationFrame(tick);
 
         // safety net: never leave the splash up if animation frames are throttled
         setTimeout(function () {

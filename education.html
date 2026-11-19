@@ -119,7 +119,7 @@
 
             <div class="topbar-actions">
                 <a class="topbar-cta" href="contact.html">Get in Touch</a>
-                <button class="navtoggle" onclick="document.getElementById('tabs').classList.toggle('open')" aria-label="Toggle menu">&#9776;</button>
+                <button class="navtoggle" type="button" aria-label="Open menu" aria-controls="tabs" aria-expanded="false">&#9776;</button>
             </div>
         </div>
     </header>
@@ -459,6 +459,7 @@
     </footer>
 
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="nav.js" defer></script>
 </body>
 </html>
 

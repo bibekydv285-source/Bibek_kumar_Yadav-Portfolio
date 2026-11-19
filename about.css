@@ -146,6 +146,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.14);
     padding: 8px 18px;
     border-radius: var(--radius-pill);
+    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
 }
 
