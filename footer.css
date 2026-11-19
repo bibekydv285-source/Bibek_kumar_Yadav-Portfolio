@@ -1092,3 +1092,181 @@
         animation: none;
     }
 }
+
+/* ==========================================================
+   COMPACT FOOTER — tighter spacing everywhere (same content)
+   ========================================================== */
+.site-footer {
+    padding-top: 28px;
+}
+
+.ft-cta {
+    padding: 14px 24px;
+    margin-bottom: 24px;
+}
+
+.ft-cta h2 {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+}
+
+.ft-grid {
+    gap: 22px 44px;
+    padding-bottom: 18px;
+}
+
+.ft-col h3 {
+    margin: 2px 0 12px;
+    padding-bottom: 8px;
+}
+
+.ft-col ul {
+    gap: 6px;
+}
+
+/* brand block */
+.ft-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.ft-id .ft-logo {
+    font-size: 1.6rem;
+}
+
+.ft-brand .ft-tagline {
+    margin: 10px 0 8px;
+    max-width: 380px;
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+.ft-meta {
+    margin-bottom: 10px;
+    gap: 4px 12px;
+    font-size: 0.78rem;
+}
+
+.ft-social {
+    margin-top: 10px;
+    gap: 6px;
+}
+
+    .ft-social a {
+        width: 32px;
+        height: 32px;
+        border-radius: 9px;
+    }
+
+/* contact cards */
+.ft-contact ul {
+    gap: 7px;
+}
+
+.ft-contact .ft-ci > a,
+.ft-contact .ft-ci > .ft-ci-static {
+    padding: 6px 10px 6px 6px;
+    gap: 10px;
+    border-radius: 12px;
+}
+
+.ft-contact .ft-ic {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+}
+
+.ft-ct-value {
+    font-size: 0.84rem;
+}
+
+.ft-ct-go {
+    font-size: 0.85rem;
+}
+
+/* latest work */
+.ft-work-row {
+    padding: 12px 0;
+    gap: 10px 20px;
+}
+
+.site-footer .ft-work-item a {
+    padding: 7px 10px 7px 7px;
+    gap: 12px;
+    border-radius: 14px;
+}
+
+.ft-work-thumb {
+    width: 70px;
+    height: 42px;
+    border-radius: 8px;
+}
+
+.ft-work-go {
+    width: 26px;
+    height: 26px;
+}
+
+/* bottom bar */
+.ft-bottom {
+    padding: 10px 0 12px;
+}
+
+.ft-top {
+    padding: 5px 12px;
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 760px) {
+    .site-footer {
+        padding-top: 22px;
+    }
+
+    .ft-cta {
+        padding: 14px 16px;
+        margin-bottom: 20px;
+    }
+
+    .ft-grid {
+        gap: 18px 16px;
+    }
+
+    /* Explore: full width, links in three short columns */
+    .ft-col[aria-label="Footer"] {
+        grid-column: 1 / -1;
+    }
+
+        .site-footer .ft-col[aria-label="Footer"] ul {
+            grid-template-columns: repeat(3, max-content);
+            column-gap: 20px;
+        }
+
+    /* Services: full width, two columns */
+    .ft-col:not(.ft-contact):not([aria-label="Footer"]) {
+        grid-column: 1 / -1;
+    }
+
+        .ft-col:not(.ft-contact):not([aria-label="Footer"]) ul {
+            grid-template-columns: repeat(2, max-content);
+            column-gap: 24px;
+        }
+
+    /* Latest Work: one swipeable row instead of three stacked cards */
+    .ft-work-row {
+        gap: 10px;
+    }
+
+    .ft-work {
+        display: flex;
+        grid-template-columns: none;
+        gap: 10px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 6px;
+        scrollbar-width: thin;
+    }
+
+        .ft-work li {
+            flex: 0 0 82%;
+            scroll-snap-align: start;
+        }
+}
