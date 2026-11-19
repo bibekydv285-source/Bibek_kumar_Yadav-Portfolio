@@ -771,26 +771,38 @@
 </section>
 
     <!-- ============ SPLASH / PRELOADER ============ -->
-<div id="splash" class="splash">
+<div id="splash" class="splash" role="status" aria-label="Loading Bibek Kumar Yadav's portfolio">
+    <div class="sp-aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="sp-grid" aria-hidden="true"></div>
+    <div class="sp-stars" aria-hidden="true"></div>
+
     <div class="splash-inner">
         <div class="splash-photo">
+            <span class="sp-ring" aria-hidden="true"></span>
+            <span class="sp-orbit" aria-hidden="true"><i></i></span>
+            <span class="sp-orbit sp-orbit--2" aria-hidden="true"><i></i></span>
             <img src="images/bibek-splash.webp" alt="Bibek Kumar Yadav" width="320" height="427" decoding="async">
-           
             <span class="splash-badge">BKY</span>
         </div>
-        <div class="splash-name">Bibek Kumar <em>Yadav</em></div>
-        <p>Full Stack Developer · ASP.NET Core &amp; WordPress</p>
+
+        <span class="sp-hello">Hello, I&#39;m</span>
+        <div class="splash-name"><span class="sp-word">Bibek</span> <span class="sp-word">Kumar</span> <em class="sp-word">Yadav</em></div>
+        <p class="sp-role">Full Stack Developer · ASP.NET Core &amp; WordPress</p>
+
         <div class="splash-tags">
-             <span>C#</span>
-<span>ASP.NET Core</span>
-<span>SQL Server</span>
-<span>WordPress</span>
-            <span>Azure</span>
-           
+            <span class="sp-tag sp-tag--purple" style="--i:0">C#</span>
+            <span class="sp-tag sp-tag--violet" style="--i:1">ASP.NET Core</span>
+            <span class="sp-tag sp-tag--pink" style="--i:2">SQL Server</span>
+            <span class="sp-tag sp-tag--cyan" style="--i:3">WordPress</span>
+            <span class="sp-tag sp-tag--blue" style="--i:4">Azure</span>
         </div>
+
         <div class="splash-progress">
+            <div class="sp-progress-top">
+                <span class="sp-status" id="splashStatus">Loading portfolio…</span>
+                <span class="sp-percent" id="splashPercent">0%</span>
+            </div>
             <div class="splash-bar"><div class="splash-fill" id="splashFill"></div></div>
-            <span id="splashPercent">0%</span>
         </div>
     </div>
 </div>

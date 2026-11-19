@@ -33,8 +33,18 @@ document.addEventListener("click", function (e) {
         return;
     }
 
-    var DURATION = 2000; // total splash time in ms
+    var DURATION = 2400; // time for the progress bar to fill, in ms
+    var HOLD = 350;      // short "Ready!" pause before the splash leaves
     var started = false;
+
+    // loading messages shown as the bar fills
+    var STEPS = [
+        [0, "Loading portfolio…"],
+        [30, "Fetching projects…"],
+        [60, "Polishing pixels…"],
+        [90, "Almost there…"],
+        [100, "Ready!"]
+    ];
 
     function runSplash() {
         if (started) return;
@@ -45,24 +55,49 @@ document.addEventListener("click", function (e) {
 
         var fill = document.querySelector(".splash-fill");
         var percentLabel = document.getElementById("splashPercent");
+        var statusLabel = document.getElementById("splashStatus");
         var start = performance.now();
+        var lastStatus = "";
+
+        function finish() {
+            splash.classList.add("hide");
+            splash.setAttribute("aria-hidden", "true");
+            setTimeout(function () {
+                splash.remove();
+            }, 750);
+        }
 
         function tick(now) {
-            var elapsed = now - start;
-            var pct = Math.min(100, Math.round((elapsed / DURATION) * 100));
+            var t = Math.min(1, (now - start) / DURATION);
+            var eased = 1 - Math.pow(1 - t, 2); // fast start, gentle finish
+            var pct = Math.round(eased * 100);
             if (fill) fill.style.width = pct + "%";
             if (percentLabel) percentLabel.textContent = pct + "%";
-            if (elapsed < DURATION) {
+
+            if (statusLabel) {
+                var text = STEPS[0][1];
+                for (var i = 0; i < STEPS.length; i++) {
+                    if (pct >= STEPS[i][0]) text = STEPS[i][1];
+                }
+                if (text !== lastStatus) {
+                    statusLabel.textContent = text;
+                    lastStatus = text;
+                }
+            }
+
+            if (t < 1) {
                 requestAnimationFrame(tick);
             } else {
-                splash.classList.add("hide");
-                splash.setAttribute("aria-hidden", "true");
-                setTimeout(function () {
-                    splash.remove();
-                }, 600);
+                splash.classList.add("is-ready");
+                setTimeout(finish, HOLD);
             }
         }
         requestAnimationFrame(tick);
+
+        // safety net: never leave the splash up if animation frames are throttled
+        setTimeout(function () {
+            if (document.body.contains(splash) && !splash.classList.contains("hide")) finish();
+        }, DURATION + HOLD + 2500);
     }
 
     if (document.readyState === "loading") {
