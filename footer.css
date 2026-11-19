@@ -599,3 +599,136 @@
         transition: none !important;
     }
 }
+
+/* ---------- Brand identity: avatar + logo + role ---------- */
+.ft-id {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ft-avatar {
+    position: relative;
+    flex: none;
+    width: 60px;
+    height: 60px;
+    padding: 2px;
+    border-radius: 50%;
+    background: conic-gradient(from 200deg, var(--ft-cyan), #8b7bff, var(--ft-pink), var(--ft-gold), var(--ft-cyan));
+    box-shadow: 0 8px 24px rgba(37, 213, 234, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .ft-avatar img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--ft-bg);
+    }
+
+    .ft-avatar:hover {
+        transform: rotate(-6deg) scale(1.05);
+        box-shadow: 0 10px 30px rgba(139, 123, 255, 0.4);
+    }
+
+.ft-online {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--ft-green);
+    border: 2.5px solid var(--ft-bg);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+
+.ft-id .ft-logo {
+    display: block;
+    font-size: 1.9rem;
+    line-height: 1.05;
+    background: linear-gradient(110deg, var(--ft-cyan), #8b7bff 55%, var(--ft-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+    .ft-id .ft-logo span {
+        display: inline-block;
+        animation: ftDot 2.4s ease-in-out infinite;
+    }
+
+@keyframes ftDot {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.ft-role {
+    display: inline-block;
+    margin-top: 4px;
+    font-family: var(--mono, 'JetBrains Mono', monospace);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ft-gold);
+}
+
+/* ---------- Tagline with highlighted tech ---------- */
+.ft-brand .ft-tagline {
+    margin: 16px 0 12px;
+    max-width: 360px;
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: #c3cad8;
+}
+
+.ft-hl {
+    display: inline-block;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    line-height: 1.55;
+    white-space: nowrap;
+}
+
+.ft-hl--net {
+    color: #c4b5fd;
+    background: rgba(124, 108, 240, 0.16);
+    border: 1px solid rgba(124, 108, 240, 0.35);
+}
+
+.ft-hl--wp {
+    color: #7dd3fc;
+    background: rgba(37, 213, 234, 0.12);
+    border: 1px solid rgba(37, 213, 234, 0.32);
+}
+
+/* ---------- Location + reply time ---------- */
+.ft-meta {
+    list-style: none;
+    margin: 0 0 14px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    font-size: 0.82rem;
+    color: var(--ft-dim);
+}
+
+    .ft-meta li {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .ft-meta li svg {
+            color: var(--ft-gold);
+        }
+
+@media (prefers-reduced-motion: reduce) {
+    .ft-id .ft-logo span {
+        animation: none;
+    }
+}
