@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found | Bibek Kumar Yadav</title>
+    <meta name="description" content="This page doesn't exist. Head back to the portfolio of Bibek Kumar Yadav, Full Stack Developer in Kathmandu, Nepal." />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#0c0d15" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --ink: #f4f6fb;
+            --dim: #9aa5b8;
+            --cyan: #25d5ea;
+            --purple: #8b7bff;
+            --pink: #ff2d78;
+            --gold: #f5a623;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+            color: var(--dim);
+            background:
+                radial-gradient(600px circle at 15% 20%, rgba(37, 213, 234, 0.14), transparent 60%),
+                radial-gradient(600px circle at 85% 80%, rgba(255, 45, 120, 0.12), transparent 60%),
+                #0c0d15;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+        }
+
+        main {
+            position: relative;
+            max-width: 620px;
+            text-align: center;
+        }
+
+        .code {
+            margin: 0;
+            font-size: clamp(6rem, 22vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            background: linear-gradient(110deg, var(--cyan), var(--purple) 45%, var(--pink) 75%, var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        h1 {
+            margin: 10px 0 10px;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: var(--ink);
+        }
+
+        p {
+            margin: 0 auto 28px;
+            max-width: 460px;
+            line-height: 1.7;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+            .btn:hover { transform: translateY(-2px); }
+
+        .btn-primary {
+            color: #0b1020;
+            background: linear-gradient(120deg, var(--cyan), var(--purple));
+            box-shadow: 0 12px 28px rgba(37, 213, 234, 0.25);
+        }
+
+        .btn-ghost {
+            color: var(--ink);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        nav {
+            margin-top: 34px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 18px;
+            font-size: 0.9rem;
+        }
+
+            nav a {
+                color: var(--dim);
+                text-decoration: none;
+            }
+
+                nav a:hover { color: var(--ink); }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="code" aria-hidden="true">404</p>
+        <h1>This page wandered off</h1>
+        <p>The page you&#39;re looking for doesn&#39;t exist or has moved. Let&#39;s get you back to something useful.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="/">Back to home</a>
+            <a class="btn btn-ghost" href="/projects.html">See my projects</a>
+        </div>
+        <nav aria-label="Site pages">
+            <a href="/about.html">About</a>
+            <a href="/education.html">Experience &amp; Education</a>
+            <a href="/skills.html">Skills</a>
+            <a href="/services.html">Services</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+    </main>
+</body>
+</html>
