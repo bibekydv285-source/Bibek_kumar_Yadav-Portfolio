@@ -732,3 +732,153 @@
         animation: none;
     }
 }
+
+/* ==========================================================
+   LINK COLUMNS — animated markers (Explore + Services)
+   ========================================================== */
+.ft-col:not(.ft-contact) ul:not(.ft-work) a {
+    --m: var(--ft-cyan);
+    gap: 10px;
+    padding: 2px 0;
+    color: var(--ft-dim);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.ft-col:not(.ft-contact):not([aria-label="Footer"]) ul a {
+    --m: var(--ft-gold);
+}
+
+    .ft-col:not(.ft-contact) ul:not(.ft-work) a::before {
+        content: "";
+        flex: none;
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--m);
+        opacity: 0.55;
+        box-shadow: 0 0 0 0 transparent;
+        transition: width 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .ft-col:not(.ft-contact) ul:not(.ft-work) a:hover,
+    .ft-col:not(.ft-contact) ul:not(.ft-work) a:focus-visible {
+        color: var(--ft-ink);
+        transform: translateX(3px);
+    }
+
+        .ft-col:not(.ft-contact) ul:not(.ft-work) a:hover::before,
+        .ft-col:not(.ft-contact) ul:not(.ft-work) a:focus-visible::before {
+            width: 16px;
+            opacity: 1;
+            box-shadow: 0 0 10px var(--m);
+        }
+
+/* current page highlighted in the Explore list */
+.site-footer .ft-col[aria-label="Footer"] ul:not(.ft-work) a[aria-current="page"] {
+    color: var(--ft-ink);
+    font-weight: 600;
+}
+
+    .site-footer .ft-col[aria-label="Footer"] ul:not(.ft-work) a[aria-current="page"]::before {
+        width: 16px;
+        opacity: 1;
+        box-shadow: 0 0 10px var(--m);
+    }
+
+/* ==========================================================
+   GET IN TOUCH — labelled contact cards
+   ========================================================== */
+.ft-contact ul {
+    gap: 10px;
+}
+
+.ft-ci {
+    --c: var(--ft-cyan);
+}
+
+.ft-ci--green { --c: #22c55e; }
+.ft-ci--gold { --c: var(--ft-gold); }
+.ft-ci--purple { --c: #8b7bff; }
+
+.ft-contact .ft-ci > a,
+.ft-contact .ft-ci > .ft-ci-static {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 9px 12px 9px 9px;
+    border-radius: 14px;
+    border: 1px solid var(--ft-line);
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--ft-ink);
+    text-decoration: none;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ft-contact .ft-ci > a:hover,
+.ft-contact .ft-ci > a:focus-visible {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--c) 50%, transparent);
+    background: color-mix(in srgb, var(--c) 8%, rgba(255, 255, 255, 0.02));
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3), 0 0 20px color-mix(in srgb, var(--c) 16%, transparent);
+}
+
+.ft-contact .ft-ic {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.ft-contact .ft-ci > a:hover .ft-ic {
+    color: #0c0d15;
+    background: var(--c);
+    transform: rotate(-8deg);
+}
+
+.ft-ct {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.ft-ct-label {
+    font-family: var(--mono, 'JetBrains Mono', ui-monospace, monospace);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--c) 80%, #fff);
+}
+
+.ft-ct-value {
+    font-size: 0.88rem;
+    color: var(--ft-ink);
+    overflow-wrap: anywhere;
+}
+
+.ft-ct-go {
+    flex: none;
+    font-size: 0.95rem;
+    color: var(--ft-dim);
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.ft-contact .ft-ci > a:hover .ft-ct-go {
+    color: var(--c);
+    transform: translate(2px, -2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ft-contact .ft-ci > a,
+    .ft-contact .ft-ic,
+    .ft-col ul a,
+    .ft-col ul a::before {
+        transition: none;
+    }
+}
