@@ -1,0 +1,58 @@
+# Bibek Kumar Yadav (Bibek Yadav)
+
+> Bibek Kumar Yadav, also known as Bibek Yadav, is a Full Stack Developer (ASP.NET Core & WordPress) based in Kathmandu, Nepal. He works as a Web Developer at Shiva Tatwa Digital and is a BSc (Hons) Computer Systems Engineering (BSc IT) student at ISMT College, Kathmandu, affiliated with the University of Sunderland, UK.
+
+- Official website and portfolio: https://bibek-yadav.com.np/
+- Photo: https://bibek-yadav.com.np/images/bibek-kumar-yadav-ismt.jpg
+- Location: Kathmandu, Nepal
+- Languages: English, Nepali, Maithili, Hindi
+
+## Education
+
+- BSc (Hons) Computer Systems Engineering (BSc IT), ISMT College, Kathmandu (affiliated with the University of Sunderland, UK), August 2025 to present
+- +2 Management (Business Studies & Economics), Khwopa Secondary School, Bhaktapur, 2023 to 2025
+- SEE (Secondary Education Examination), Nabin English School, 2023
+
+## Work experience
+
+- Web Developer at Shiva Tatwa Digital, Budhanilkantha, Kathmandu (August 2026 to present). Designed, built and launched 5 live client websites on custom WordPress themes, and manages hosting on cPanel (domains, DNS, site migrations).
+
+## Skills
+
+- Backend: C#, ASP.NET Core MVC, Entity Framework Core, PHP
+- Frontend: HTML5, CSS3, JavaScript, Bootstrap, responsive design
+- Databases: SQL Server, MySQL
+- CMS: WordPress custom themes and custom post types
+- Hosting and cloud: Microsoft Azure, cPanel, domains and DNS, Vercel, Cloudflare Pages
+- Tools: Git, GitHub, Visual Studio, VS Code, Python (basic)
+
+## Projects
+
+- [Shiv Tattva Yog School](https://shivtattvayogschool.com/): yoga school website with course pages, online booking and payment pages (WordPress)
+- [Pirelune](https://pirelune.com/): handmade crystal jewellery store with filters, search and custom orders (WordPress)
+- [Devraj Pathak](https://devrajpathak.com/): personal brand site linking three companies (WordPress)
+- [Shiva Tatwa Digital](https://shivatatwadigital.com/): digital agency website, redesigned and migrated to cPanel (WordPress)
+- [Shiva Tatwa Yogshala](https://shivatatwayogshala.com.np/): Himalayan yoga school website (WordPress)
+- Library Inventory Management System: ASP.NET Core MVC, SQL Server, deployed on Microsoft Azure
+- Bibek School Management System: ASP.NET Core MVC, Entity Framework Core, MySQL
+- [Bibek Car Rental](https://bibek-car-rental.vercel.app/): car rental website with booking and price calculator (HTML, CSS, JavaScript)
+- [Yadav Jii Doodh Dairy](https://yadav-jii-doodh-dairy.vercel.app/): dairy business website with WhatsApp ordering (HTML, CSS, JavaScript)
+
+## Pages
+
+- [About](https://bibek-yadav.com.np/about): background, journey and soft skills
+- [Experience & Education](https://bibek-yadav.com.np/education): work and education timeline
+- [Skills](https://bibek-yadav.com.np/skills): technical skills and where they were used
+- [Projects](https://bibek-yadav.com.np/projects): client and personal projects with live links
+- [Services](https://bibek-yadav.com.np/services): web development, WordPress themes, hosting, domains
+- [Contact](https://bibek-yadav.com.np/contact): WhatsApp, email and social links
+- [Resume (PDF)](https://bibek-yadav.com.np/Bibek_Kumar_Yadav_Resume.pdf)
+
+## Contact and profiles
+
+- Email: Bibekydv51@gmail.com
+- WhatsApp: +977 976 3244805
+- LinkedIn: https://www.linkedin.com/in/bibek-yadav-060ba03b2
+- GitHub: https://github.com/bibekydv285-source
+- Instagram: https://www.instagram.com/yadubanshi.bibek
+- Facebook: https://www.facebook.com/share/1EcL4pWUiV/

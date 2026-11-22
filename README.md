@@ -23,6 +23,7 @@ This repository holds the source code of my portfolio: who I am, my work experie
 - **WhatsApp contact form:** opens WhatsApp with the visitor's message ready to send (no backend), with topic chips, floating labels, a character counter and validation
 - **Splash screen, animations and hover effects**, with reduced-motion support for accessibility
 - **SEO:** unique titles and descriptions, canonical clean URLs, Open Graph/Twitter cards with a custom share image, JSON-LD (Person, breadcrumbs, projects, services, FAQ), image sitemap, custom 404 page
+- **AI & search visibility:** `llms.txt` profile, robots.txt that welcomes search engines and AI assistants, named profile photo in structured data, IndexNow for Bing
 - **Performance:** optimised WebP images, only the stylesheets each page needs, non-blocking icon fonts, preconnect hints
 - **Free hosting** on Cloudflare Pages with a custom `.com.np` domain and HTTPS
 
@@ -77,6 +78,8 @@ Bibek_kumar_Yadav-Portfolio/
 ├── 404.html                      # Custom "page not found" page
 ├── site.webmanifest              # App name, icons and theme colour
 ├── _headers                      # Cloudflare security + cache headers
+├── llms.txt                      # Plain-language profile for AI assistants
+├── <key>.txt                     # IndexNow key (instant indexing on Bing / ChatGPT search)
 └── README.md
 ```
 

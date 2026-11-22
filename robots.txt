@@ -1,3 +1,32 @@
+# Bibek Kumar Yadav – portfolio (https://bibek-yadav.com.np)
+# Everyone is welcome to index this site, including AI assistants,
+# so people can find "Bibek Yadav, ISMT College" in search and AI answers.
+
+# Search engines
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: DuckDuckBot
+User-agent: YandexBot
+Allow: /
+
+# AI assistants and AI search (ChatGPT, Gemini, Claude, Perplexity, Copilot, Apple Intelligence)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+Allow: /
+
+# Everyone else
 User-agent: *
 Allow: /
 
